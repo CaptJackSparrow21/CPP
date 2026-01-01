@@ -1,3 +1,5 @@
+//this question is is accordig to striver sheet
+
 #include<bits/stdc++.h>
 using namespace std;
 
