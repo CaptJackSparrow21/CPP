@@ -1,28 +1,25 @@
-//this question is is accordig to striver sheet
-
 #include<bits/stdc++.h>
 using namespace std;
 
-//definition of SLL - 
+//definition of DLL
 class ListNode {
 public :
     int data;
+    ListNode* prev;
     ListNode* next;
-    ListNode() : data(0), next(nullptr) {}
-    ListNode(int x) : data(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : data(x), next(next) {}
+    ListNode() : data(0), prev(nullptr), next(nullptr) {}
+    ListNode(int x) : data(x), prev(nullptr), next(nullptr) {}
+    ListNode(int x, ListNode* prev, ListNode* next) :
+        data(x), prev(prev), next(next) {}
 };
 
 class Solution {
-public :
-    ListNode* deletehead(ListNode* &head) {
-        if(head == nullptr) return nullptr;
-
-        ListNode* temp = head;
-        head = head->next;
-        delete temp;
-
-        return head;
+public:
+    ListNode* insertBeforeHead(ListNode* head, int X) {
+        ListNode* temp = new ListNode(X);
+        temp->next = head;
+        if(head != nullptr) head->prev = temp;
+        return temp;
     }
 };
 
@@ -32,13 +29,14 @@ int main() {
 
     string input;
     getline(cin, input);
+    int X; cin >> X;
 
     input.erase(remove(input.begin(), input.end(), '['), input.end());
     input.erase(remove(input.begin(), input.end(), ']'), input.end());
 
     stringstream ss(input);
-    string temp;
     vector<int> nums;
+    string temp;
     while(getline(ss, temp, ',')) {
         if(!temp.empty()) {
             nums.push_back(stoi(temp));
@@ -55,23 +53,24 @@ int main() {
         }
         else {
             tail->next = node;
+            node->prev = tail;
             tail = node;
         }
     }
 
     Solution sol;
-    head = sol.deletehead(head);
+    head = sol.insertBeforeHead(head, X);
 
     cout << "[";
     ListNode* curr = head;
     bool first = true;
     while(curr) {
-        if(!first) cout << ",";
+        if(!first) cout << ',';
         cout << curr->data;
         first = false;
         curr = curr->next;
     }
     cout << "]\n";
- 
+
     return 0;
 }
