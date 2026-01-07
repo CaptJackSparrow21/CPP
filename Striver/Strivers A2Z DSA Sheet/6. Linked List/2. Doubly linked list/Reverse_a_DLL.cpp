@@ -1,29 +1,37 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//definition of DLL
-class ListNode{
+class ListNode {
 public:
     int data;
     ListNode *prev;
-    ListNode * next;
-    ListNode() : data(0), prev(nullptr), next(nullptr) {}
-    ListNode(int x) : data(x), prev(nullptr), next(nullptr) {}
-    ListNode(int x, ListNode *prev, ListNode *next) :
-        data(x), prev(prev), next(next) {}
-
+    ListNode *next;
+    ListNode() : data(0), next(nullptr), prev(nullptr) {}
+    ListNode(int val) : data(val), prev(nullptr), next(nullptr) {}
+    ListNode(int val, ListNode *prev, ListNode *next) :
+        data(val), prev(prev), next(next) {}
 };
 
 class Solution {
 public:
-    ListNode *deleteHead(ListNode *&head) {
-        if(!head || !head->next) return nullptr;
-        ListNode *temp = head->next;
-        head->next = nullptr;
-        return temp;
+    ListNode *reverseDLL(ListNode *head) {
+        if(head == nullptr) return head;
+        ListNode *curr = head;
+        ListNode *last = nullptr;
+
+        while(curr != nullptr) {
+            last = curr;
+
+            ListNode *temp = curr->prev;
+            curr->prev = curr->next;
+            curr->next = temp;
+
+            curr = curr->prev;
+        }
+        return last;
     }
 };
-    
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -35,8 +43,8 @@ int main() {
     input.erase(remove(input.begin(), input.end(), ']'), input.end());
 
     stringstream ss(input);
-    vector<int> nums;
     string temp;
+    vector<int> nums;
     while(getline(ss, temp, ',')) {
         if(!temp.empty()) {
             nums.push_back(stoi(temp));
@@ -45,10 +53,10 @@ int main() {
 
     ListNode *head = nullptr;
     ListNode *tail = nullptr;
-
     for(int i=0; i<nums.size(); i++) {
         int val = nums[i];
         ListNode *node = new ListNode(val);
+
         if(!head) {
             head = tail = node;
         }
@@ -60,7 +68,7 @@ int main() {
     }
 
     Solution sol;
-    head = sol.deleteHead(head);
+    head = sol.reverseDLL(head);
 
     cout << "[";
     ListNode *curr = head;
