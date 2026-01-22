@@ -1,1 +1,1 @@
-Daily 1 CodeForces problem  [Profile Link](https://codeforces.com/profile/sanketgurav211)
+CodeForces [Profile Link](https://codeforces.com/profile/sanketgurav211)
