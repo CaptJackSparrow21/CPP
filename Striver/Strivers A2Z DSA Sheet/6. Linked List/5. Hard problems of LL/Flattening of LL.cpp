@@ -60,7 +60,7 @@ class Solution {
         while(rest) {
             rest->next = nullptr;
             rest = rest->child;
-        }
+        }       
         return head;
     }
 
