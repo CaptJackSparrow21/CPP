@@ -12,32 +12,30 @@ using namespace std;
 class Solution {
 public:
     int myAtoi(string s) {
-        int i=0, n = s.size();
-        int sign = 1;
-        int result = 0;
-
-        //skip leading whitespaces
+        int n = s.size();
+        int i=0;
         while(i < n && s[i] == ' ') i++;
 
-        //checking for sign
-        if(i < n && (s[i] == '+' || s[i] == '-')) {
-            sign = ((s[i] == '-') ? -1 : 1);
+        if(i == n) return 0;
+
+        int sign = 1;
+        if(s[i] == '+' || s[i] == '-') {
+            if(s[i] == '-') sign = -1;
             i++;
         }
 
-        //converting digits and handling overflow
-        while(i <n && isdigit(s[i])) {
-            int digit = s[i] - '0';
+        long long ans = 0;
+        while(i < n && s[i] >= '0' && s[i] <= '9') {
+            int d = s[i] - '0';
 
-            //checking overflow before actually adding the digit
-            if(result > (INT_MAX - digit) / 10) {
-                return ((sign == 1) ? INT_MAX : INT_MIN);
+            if(ans > INT_MAX / 10 || (ans == INT_MAX / 10 && d > INT_MAX % 10)) {
+                return sign == 1 ? INT_MAX : INT_MIN;
             }
 
-            result = result * 10 + digit;
+            ans = ans * 10 + d;
             i++;
         }
-        return sign * result;
+        return (int)(sign * ans);
     }
 };
 // @lc code=end
