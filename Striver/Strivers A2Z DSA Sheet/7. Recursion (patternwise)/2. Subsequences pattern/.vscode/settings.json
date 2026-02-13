@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "just": "cpp"
-    }
+    },
+    "chatgpt.openOnStartup": false
 }
