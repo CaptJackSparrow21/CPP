@@ -9,23 +9,29 @@
 class Solution {
 public:
     int divide(int dividend, int divisor) {
-        if(dividend == INT_MIN && divisor == -1) return INT_MAX;
+        if(dividend == 0) return 0;
 
-        ll dvd = llabs(dividend);
-        ll dvs = llabs(divisor);
-        ll ans = 0;
+        ll dvd = abs((ll)dividend);
+        ll dvs = abs((ll)divisor);
 
-        for(int i=31; i>=0; i--) {
-            if((dvd >> i) >= dvs) {
-                ans += (1LL << i);
-                dvd -= (dvs << i);
+        ll res = 0;
+
+        bool neg = (dividend > 0) ^ (divisor > 0);
+
+        while(dvd >= dvs) {
+            ll temp = dvs, mul = 1;
+            while(dvd >= (temp << 1)) {
+                temp <<= 1;
+                mul <<= 1;
             }
+            dvd -= temp;
+            res += mul;
         }
+        if(neg) res = -res;
+        if(res > INT_MAX) return INT_MAX;
+        if(res < INT_MIN) return INT_MIN;
 
-        if((dividend > 0) ^ (divisor > 0))
-            ans = -ans;
-
-        return (int)ans;
+        return (int) res;
     }
 };
 // @lc code=end
