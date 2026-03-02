@@ -1,0 +1,13 @@
+{
+  "C++ Main Template": {
+    "prefix": "leetcode",          // type this and press Tab to expand
+    "scope": "cpp, c++",
+    "body": [
+      "#include<bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "    $0",                   // cursor will appear here
+    ],
+    "description": "Basic C++ main function template"
+  }
+}
