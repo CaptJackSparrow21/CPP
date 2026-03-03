@@ -1,5 +1,5 @@
 //https://www.youtube.com/watch?v=-6uez-BhEhU
-
+//watch video for understanding
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
