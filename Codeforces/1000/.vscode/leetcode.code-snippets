@@ -1,20 +1,12 @@
 {
   "C++ Main Template": {
-    "prefix": "cpptest",          // type this and press Tab to expand
+    "prefix": "leetcode",          // type this and press Tab to expand
     "scope": "cpp, c++",
     "body": [
       "#include<bits/stdc++.h>",
       "using namespace std;",
-      "#define ll long long",
-      "",
-      "int main() {",
-      "    ios::sync_with_stdio(false);",
-      "    cin.tie(nullptr);",
       "",
       "    $0",                   // cursor will appear here
-      "",
-      "    return 0;",
-      "}"
     ],
     "description": "Basic C++ main function template"
   }

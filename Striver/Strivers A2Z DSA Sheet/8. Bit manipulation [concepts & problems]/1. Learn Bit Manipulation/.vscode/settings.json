@@ -1,6 +1,5 @@
 {
     "files.associations": {
         "just": "cpp"
-    },
-    "git.ignoreLimitWarning": true
+    }
 }
