@@ -4,28 +4,40 @@
 using namespace std;
 #define ll long long
 
+//TC = SC = O(n)
 class QueueStack {
 public:
+    queue<int> q;
+
     QueueStack() {
         
     }
 
     void push(int x) {
+        q.push(x);
+        int s = q.size();
 
+        //rotate previous elements
+        for(int i=0; i<s-1; i++) {
+            q.push(q.front());  //move front to back
+            q.pop();
+        }
     }
 
-    int pop() {
-
+    int pop() { 
+        int x = q.front();
+        q.pop();
+        return x;
     }
 
     int top() {
-
+        return q.front();
     }
 
     bool isEmpty() {
-
+        return q.empty();
     }
-};
+};  
 
 int main() {
     ios::sync_with_stdio(false);
@@ -61,7 +73,7 @@ int main() {
     cout << "[";
     for(int i=0; i<ops.size(); i++) {
         if(i) cout << ",";
-        if(ops[i] == "ArrayStack") cout << "null";
+        if(ops[i] == "QueueStack") cout << "null";
         else if(ops[i] == "push") {
             st.push(args[p++]);
             cout << "null";
