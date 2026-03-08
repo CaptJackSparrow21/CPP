@@ -6,39 +6,39 @@
 
 // @lc code=start
 class MyQueue {
-    stack<int> inSt;
-    stack<int> outSt;
-
-    void move() {
-        if(outSt.empty()) {
-            while(!inSt.empty()) {
-                outSt.push(inSt.top());
-                inSt.pop();
-            }
-        }
-    }
-
 public:
+    stack<int> s1, s2;
+
     MyQueue() {}
     
     void push(int x) {
-        inSt.push(x);
+        s1.push(x);
     }
     
     int pop() {
-        move();
-        int x = outSt.top();
-        outSt.pop();
-        return x;
+        if(s2.empty()) {
+            while(!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+        int val = s2.top();
+        s2.pop();
+        return val;
     }
     
     int peek() {
-        move();
-        return outSt.top();
+        if(s2.empty()) {
+            while(!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+        return s2.top();
     }
     
     bool empty() {
-        return inSt.empty() && outSt.empty();
+        return s1.empty() && s2.empty();
     }
 };
 
