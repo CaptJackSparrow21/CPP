@@ -11,6 +11,10 @@ int main() {
         vector<string> a(8);
         for(int i=0; i<8; i++) cin >> a[i];
 
+        //think diagonally like
+        //  # . #
+        //  . # .
+        //  # . #
         for(int i=1; i<7; i++) {
             for(int j=1; j<7; j++) {
                 if(a[i-1][j-1] == '#' &&
