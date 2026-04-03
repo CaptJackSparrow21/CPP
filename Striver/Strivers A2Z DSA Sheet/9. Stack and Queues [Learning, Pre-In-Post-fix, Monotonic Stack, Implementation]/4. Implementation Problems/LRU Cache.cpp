@@ -5,43 +5,71 @@ using namespace std;
 #define ll long long
 
 //TC = O(1) && SC = O(capacity)
+struct Node {
+    int key, val;
+    Node *prev;
+    Node *next;
+
+    Node(int k, int v) : key(k), val(v), prev(nullptr), next(nullptr) {}
+};
+
 class LRUCache {
 public:
-    int cap;
-    list<pair<int, int>> dll; //{key, value}
-    unordered_map<int, list<pair<int, int>> :: iterator> mp;
+    int capacity;
+    unordered_map<int, Node *> mp;
+    Node *head;
+    Node *tail;
+
+    void insertFront(Node *node) {
+        node->next = head->next;
+        node->prev = head;
+        head->next->prev = node;
+        head->next = node; 
+    }
+
+    void removeNode(Node *node) {
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
 
     LRUCache(int capacity) {
-        cap = capacity;
+        this->capacity = capacity;
+
+        head = new Node(0, 0);
+        tail = new Node(0, 0);
+
+        head->next = tail;
+        tail->prev = head;
     }
 
     int get(int key) {
         if(mp.find(key) == mp.end()) return -1;
 
-        auto it = mp[key];
-        int val = it->second;
-
-        dll.erase(it);
-        dll.push_front({key, val});
-        mp[key] = dll.begin();
-
-        return val;
+        Node *node = mp[key];
+        removeNode(node);
+        insertFront(node);
+        return node->val;
     }
 
     void put(int key, int value) {
-        if(mp.find(key) != mp.end()) {
-            dll.erase(mp[key]);
-            mp.erase(key);
+       if(mp.find(key) != mp.end()) {
+        Node *node = mp[key];
+        node->val = value;
+        removeNode(node);
+        insertFront(node);
         }
-       
-        if(dll.size() == cap) {
-            auto last = dll.back();
-            mp.erase(last.first);
-            dll.pop_back();
-        }
+       else {
+            if((int)mp.size() == capacity) {
+                Node *lru = tail->prev;
+                removeNode(lru);
+                mp.erase(lru->key);
+                delete lru;
+            }
 
-        dll.push_front({key, value});
-        mp[key] = dll.begin();
+            Node *newNode = new Node(key, value);
+            insertFront(newNode);
+            mp[key] = newNode;
+        }
     }
 };
 
@@ -50,17 +78,22 @@ vector<vector<int>> parse(string s) {
     vector<int> curr;
     int num = 0;
     bool building = false;
+    bool negative = false;
 
     for(char c : s) {
-        if(isdigit(c)) {
+        if(c == '-') {
+            negative = true;
+        }
+        else if(isdigit(c)) {
             num = num * 10 + (c - '0');
             building = true;
         }
         else {
             if(building) {
-                curr.push_back(num);
+                curr.push_back(negative ? -num : num);
                 num = 0;
                 building = false;   
+                negative = false;
             }
             if(c == ']') {
                 if(!curr.empty()) {
@@ -89,7 +122,7 @@ int main() {
     LRUCache cache(capacity);
     
     bool first = true;
-    cout << "[";
+    cout << "[null,";
     for(auto &op : ops) {
         if(op[0] == 1) {
             cache.put(op[1], op[2]);
