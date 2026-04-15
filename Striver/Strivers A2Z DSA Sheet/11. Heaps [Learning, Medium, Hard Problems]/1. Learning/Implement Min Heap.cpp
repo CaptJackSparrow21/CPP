@@ -4,6 +4,8 @@
 using namespace std;
 #define ll long long
 
+//TC = O(Q * log n) && SC = O(n) 
+//Q -> # operations
 class Solution {
 public:
     vector<int> heap;
@@ -31,7 +33,7 @@ public:
             int right = 2 * i + 2;
             if(left < n && heap[left] < heap[smallest])
                 smallest = left;
-            if(left < n && heap[right] < heap[smallest])
+            if(right < n && heap[right] < heap[smallest])
                 smallest = right;
             if(smallest != i) {
                 swap(heap[i], heap[smallest]);
@@ -52,11 +54,12 @@ public:
         heapifyDown(index);
     }
 
-    void exctractMin() {    
+    void extractMin() {    
         if(heap.empty()) return;
         heap[0] = heap.back();
         heap.pop_back();
-        if(!heap.empty()) heapifyDown(0);
+        if(!heap.empty()) 
+            heapifyDown(0);
     }
 
     bool isEmpty() {
@@ -76,7 +79,91 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    
+    string line;
+    cin >> line;
+
+    vector<string> ops;
+    stringstream ss(line);
+    string token;
+    while(getline(ss, token, ',')) {
+        string op = "";
+        for(char c : token)
+            if(c != '[' && c != ']' && c != '"')
+                op += c;
+        if(!op.empty())
+            ops.push_back(op);
+    }
+
+    string numLine;
+    cin >> numLine;
+
+    vector<vector<int>> args;
+    int i=0, n = numLine.size();
+    while(i < n) {
+        if(numLine[i] == '[' && i+1 < n && numLine[i+1] != '[]') {
+            vector<int> group;
+            i++;
+            while(i < n && numLine[i] != ']') {
+                if(isdigit(numLine[i]) || numLine[i] == '-') {
+                    int num = 0, sign = 1;
+                    if(numLine[i] == '-') {
+                        sign = -1;
+                        i++;
+                    }
+                    while(i < n && isdigit(numLine[i]))
+                        num = num * 10 + (numLine[i++] - '0');
+                    group.push_back(sign * num);
+                }
+                else 
+                    i++;
+            }
+            args.push_back(group);
+        }
+        i++;
+    }
+
+    Solution sol;
+
+    int argIdx = 0;
+    vector<string> output;
+
+    for(auto &op : ops) {
+        if(op == "initializeheap") {
+            sol.initializeHeap();
+            output.push_back("null");
+        }
+        else if(op == "insert") {
+            sol.insert(args[argIdx][0]);
+            argIdx++;
+            output.push_back("null");
+        }
+        else if(op == "getMin") {
+            output.push_back(to_string(sol.getMin()));
+        }
+        else if(op == "heapSize") {
+            output.push_back(to_string(sol.heapSize()));
+        }
+        else if(op == "isEmpty") {
+            output.push_back(to_string(sol.isEmpty()));
+        }
+        else if(op == "extractMin") {
+            sol.extractMin();
+            output.push_back("null");
+        }
+        else if(op == "changeKey") {
+            sol.changeKey(args[argIdx][0], args[argIdx][1]);
+            argIdx++;
+            output.push_back("null");
+        }
+    }
+
+    cout << "[";
+    for(int i=0; i<output.size(); i++) {
+        cout << output[i];
+        if(i + 1 < output.size())
+            cout << ",";
+    }
+    cout << "]";
 
     return 0;
 }
