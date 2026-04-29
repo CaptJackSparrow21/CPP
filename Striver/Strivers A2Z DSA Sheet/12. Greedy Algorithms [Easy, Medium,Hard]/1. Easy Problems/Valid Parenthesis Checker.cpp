@@ -19,8 +19,8 @@ public:
                 mx--;
             }
             else {  //c == *
-                mn--;
-                mx++;
+                mn--;   //best case ')'
+                mx++;   //worst case '('
             }
 
             mn = max(mn, 0);
