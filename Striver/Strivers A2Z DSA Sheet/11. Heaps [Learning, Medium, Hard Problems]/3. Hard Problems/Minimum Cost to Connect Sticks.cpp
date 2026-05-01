@@ -4,11 +4,27 @@
 using namespace std;
 #define ll long long
 
+//TC = O(n log n) && SC = O(n)
 class Solution {
 public:
-    int connectSticks(vector<int> &sticks) [
+    int connectSticks(vector<int> &sticks) {
+        priority_queue<int, vector<int>, greater<int>>
+                                pq(sticks.begin(), sticks.end());
         
-    ]
+        int cost = 0;
+        while(pq.size() > 1) {
+            int first = pq.top(); 
+            pq.pop();
+            int second = pq.top();
+            pq.pop();
+
+            int sum = first + second;
+            cost += sum;
+
+            pq.push(sum);
+        }
+        return cost;
+    }
 };
 
 int main() {
