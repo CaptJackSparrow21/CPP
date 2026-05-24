@@ -15,7 +15,7 @@ int main() {
 
         bool inserted = false;
         for(int i=0; i<s.size(); i++) {
-            if(s[i] - '0' < d) {
+            if(s[i] - '0' < d) { // <= will no work
                 cout << d;
                 for(int j=i; j<s.size(); j++) 
                     cout << s[j];
