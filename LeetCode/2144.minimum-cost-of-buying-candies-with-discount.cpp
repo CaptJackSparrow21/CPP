@@ -1,0 +1,24 @@
+/*
+ * @lc app=leetcode id=2144 lang=cpp
+ *
+ * [2144] Minimum Cost of Buying Candies With Discount
+ */
+
+// @lc code=start
+class Solution {
+public:
+    int minimumCost(vector<int>& cost) {
+        int n = cost.size();
+        sort(cost.rbegin(), cost.rend());
+        int ans = 0;
+
+        for(int i=0; i<n; i++) {
+            if(i % 3 != 2)
+                ans += cost[i];
+        }
+
+        return ans;
+    }
+};
+// @lc code=end
+
