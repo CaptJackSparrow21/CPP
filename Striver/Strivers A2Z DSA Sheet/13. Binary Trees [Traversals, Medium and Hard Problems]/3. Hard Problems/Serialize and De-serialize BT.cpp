@@ -105,6 +105,45 @@ TreeNode *buildTree(vector<string> &arr) {
     return root;
 }
 
+vector<string> treeToVector(TreeNode *root) {
+    vector<string> ans;
+    if(!root)
+        return ans;
+
+    queue<TreeNode *> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        TreeNode *node = q.front();
+        q.pop();
+
+        if(node == nullptr) {
+            ans.push_back("null");
+            continue;
+        }
+
+        ans.push_back(to_string(node->data));
+
+        q.push(node->left);
+        q.push(node->right);
+    }
+
+    while(!ans.empty() && ans.back() == "null")
+        ans.pop_back();
+
+    return ans;
+}
+
+void printTree(TreeNode *root) {
+    vector<string> v = treeToVector(root);
+    cout << "[";
+    for(int i=0; i<v.size(); i++) {
+        cout << v[i];
+        cout << ((i+1) == v.size() ? "" : ",");
+    }
+    cout << "]";
+}
+
 signed main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
@@ -131,7 +170,9 @@ signed main() {
 
     TreeNode *root = buildTree(arr);
     Solution sol;
-
+    string data = sol.serialize(root);
+    TreeNode *newRoot = sol.deserialize(data);
+    printTree(newRoot);
 
     return 0;
 }
