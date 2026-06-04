@@ -11,7 +11,12 @@ signed main() {
     while(t--) {
         ll n; cin >> n;
         vector<ll> a(n);
-        
+        for(ll &i : a)  cin >> i;
+
+        if(n == 2 && (a[1] - a[0]) > 1)
+            cout << "YES\n";
+        else 
+            cout << "NO\n";
     }
 
     return 0;
