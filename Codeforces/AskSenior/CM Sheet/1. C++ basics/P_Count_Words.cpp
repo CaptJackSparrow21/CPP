@@ -10,11 +10,11 @@
         string s;
         getline(cin, s);
 
-        int cnt = 1;
+        int cnt = 0;
         bool word = false;
 
         for(int i=0; i<s.size(); i++) {
-            if(isalpha(c)) {
+            if(isalpha(s[i])) {
                 if(!word) {
                     cnt++;
                     word = true;
