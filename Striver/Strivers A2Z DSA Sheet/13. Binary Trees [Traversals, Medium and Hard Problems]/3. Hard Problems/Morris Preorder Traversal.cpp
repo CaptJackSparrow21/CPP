@@ -10,6 +10,7 @@ struct TreeNode{
     TreeNode(int val) : left(nullptr), right(nullptr), data(val) {}
 };
 
+//TC = O(n) && SC = O(1)
 class Solution {
 public:
     vector<int> preorder(TreeNode *root) {
@@ -22,7 +23,7 @@ public:
                 curr = curr->right;
             }
             else {
-                //inorder predecessor
+                //find inorder predecessor
                 TreeNode *pred = curr->left;
                 while(pred->right && pred->right != curr)
                     pred = pred->right;
