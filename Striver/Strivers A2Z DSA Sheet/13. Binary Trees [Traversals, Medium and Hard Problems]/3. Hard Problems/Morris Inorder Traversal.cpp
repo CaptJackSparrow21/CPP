@@ -14,7 +14,39 @@ struct TreeNode {
 class Solution {
 public:
     vector<int> getInorder(TreeNode *root) {
-        vector<>
+        vector<int> ans;
+
+        TreeNode *curr = root;
+
+        while(curr) {
+            //case 1 : no left child
+            if(curr->left == nullptr) {
+                ans.push_back(curr->data);
+                curr = curr->right;
+            }
+            //case 2 : left child exists
+            else {
+                TreeNode *pred = curr->left;
+
+                //find inorder predecessor
+                while(pred->right && pred->right != curr)
+                    pred = pred->right;
+                
+                //create thread
+                if(pred->right == nullptr) {
+                    pred->right = curr;
+                    curr = curr->left;
+                }
+
+                //thread already exists
+                else {
+                    pred->right = nullptr;
+                    ans.push_back(curr->data);
+                    curr = curr->right;
+                }
+            }
+        }
+        return ans;
     }
 };
 
@@ -77,8 +109,9 @@ signed main() {
     cout << "[";
     for(int i=0; i<ans.size(); i++) {
         cout << ans[i];
-        cout << ((i+1) == ans.size() ? "" : " ");
+        cout << ((i+1) == ans.size() ? "" : ",");
     }
+    cout << "]";
 
     return 0;
 }
