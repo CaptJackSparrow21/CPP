@@ -10,22 +10,10 @@ signed main() {
     string x, y;
     cin >> x >> y;
 
-    if(x.size() > y.size())
-        cout << y;
-    else if(x.size() < y.size())
+    if(x < y)   
         cout << x;
-    else {
-        for(int i=0; i<x.size(); i++) {
-            if(x[i] == y[i])
-                continue;
-            else {
-                if(x[i] > y[i])
-                    cout << y;
-                else 
-                    cout << x;
-            }
-        }
-    }
+    else 
+        cout << y;
 
     return 0;
 }
