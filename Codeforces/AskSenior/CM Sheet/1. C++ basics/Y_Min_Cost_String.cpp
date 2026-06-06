@@ -7,6 +7,10 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
+    string s; cin >> s;
+    vector<int> a(26);
+    for(int &i : a) cin >> i;
+
     
 
     return 0;
