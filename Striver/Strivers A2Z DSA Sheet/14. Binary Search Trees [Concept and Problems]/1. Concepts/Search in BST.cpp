@@ -10,10 +10,18 @@ struct TreeNode {
     TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
 };
 
+//TC = O(log n) for skewed O(n)
+//SC = O(h)
 class Solution {
 public:
     TreeNode *searchBST(TreeNode *root, int val) {
-        
+        if(root == nullptr || root->data == val)
+            return root;
+
+        if(val < root->data)
+            return searchBST(root->left, val);
+        else    
+            return searchBST(root->right, val);
     }
 };
 
@@ -86,6 +94,7 @@ signed main() {
 
     string s;
     getline(cin, s);
+    int val; cin >> val;
 
     vector<string> arr;
     string temp = "";
@@ -105,7 +114,7 @@ signed main() {
 
     TreeNode *root = buildTree(arr);
     Solution sol;
-    TreeNode *ans = sol.searchBST(root);
+    TreeNode *ans = sol.searchBST(root, val);
 
     printTree(ans);
 
