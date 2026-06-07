@@ -17,7 +17,24 @@ signed main() {
 
     if(q == 1) {
         for(int i=0; i<s.size(); i++) {
-            
+            char c = s[i];
+            for(int j=0; j<org.size(); j++) {
+                if(c == org[j]) {
+                    cout << key[j];
+                    break;
+                }
+            }
+        }
+    }
+    else {
+        for(int i=0; i<s.size(); i++) {
+            char c = s[i];
+            for(int j=0; j<key.size(); j++) {
+                if(c == key[j]) {
+                    cout << org[j];
+                    break;
+                }
+            }
         }
     }
 
