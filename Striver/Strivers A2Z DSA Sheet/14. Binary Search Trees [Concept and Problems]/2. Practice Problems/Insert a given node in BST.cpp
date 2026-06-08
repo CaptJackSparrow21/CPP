@@ -10,6 +10,7 @@ struct TreeNode {
     TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
 };
 
+//TC = O(h) && SC = O(1)
 class Solution {
 public:
     TreeNode *insertIntoBST(TreeNode *root, int val) {
@@ -29,9 +30,12 @@ public:
             else {
                 if(curr->right == nullptr) {
                     curr->right = new TreeNode(val);
+                    break;
                 }
+                curr = curr->right;
             }
         }
+        return root;
     }
 };
 
@@ -125,9 +129,9 @@ signed main() {
 
     TreeNode *root = buildTree(arr);
     Solution sol;
-    TreeNode *root = sol.insertIntoBST(root, val);
+    TreeNode *ans = sol.insertIntoBST(root, val);
 
-    printTree(root);
+    printTree(ans);
 
     return 0;
 }
