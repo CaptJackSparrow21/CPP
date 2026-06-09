@@ -1,3 +1,5 @@
+//https://takeuforward.org/plus/dsa/problems/delete-a-node-in-bst?source=strivers-a2z-dsa-track
+
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
@@ -38,8 +40,10 @@ public :
                 succ = succ->left;
 
             root->data = succ->data;
-            root->right = deleteNode(rp)
+            root->right = deleteNode(root->right, succ->data);
         }
+
+        return root;
     }
 };
 
