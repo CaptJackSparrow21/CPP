@@ -12,13 +12,10 @@ signed main() {
         int n, m, l, r;
         cin >> n >> m >> l >> r;
 
-        int i = 0, j = 0;
-        if(m % 2 == 0) {
-            
-        }
-        else {
+        int x = -min(m, -l);
+        int y = x + m;
+        cout << x << " " << y << '\n';
 
-        }
     }
 
     return 0;
