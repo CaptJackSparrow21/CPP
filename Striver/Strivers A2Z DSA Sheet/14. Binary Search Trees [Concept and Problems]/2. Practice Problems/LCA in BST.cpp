@@ -10,10 +10,18 @@ struct TreeNode {
     TreeNode(int val) : left(nullptr), right(nullptr), data(val) {}
 };
 
+//TC = O(h) && SC = O(1)
 class Solution {
 public:
     TreeNode *lca(TreeNode *root, int p, int q) {
-
+        while(root) {
+            if(p < root->data && q < root->data)
+                root = root->left;
+            else if(p > root->data && q > root->data)
+                root = root->right;
+            else return root; 
+        }
+        return nullptr;
     }
 };
 
@@ -30,8 +38,19 @@ TreeNode *buildTree(vector<string> &arr) {
         TreeNode *curr = q.front();
         q.pop();
 
-        
+        if(i < arr.size() && arr[i] != "null") {
+            curr->left = new TreeNode(stoi(arr[i]));
+            q.push(curr->left);
+        }
+        i++;
+
+        if(i < arr.size() && arr[i] != "null") {
+            curr->right = new TreeNode(stoi(arr[i]));
+            q.push(curr->right);
+        }
+        i++;
     }
+    return root;
 }
 
 signed main() {
@@ -62,7 +81,12 @@ signed main() {
 
     TreeNode *root = buildTree(arr);
     Solution sol;
+    TreeNode *ans = sol.lca(root, p, q);
 
+    if(ans)
+        cout << '[' << ans->data << ']';
+    else 
+        cout << '[]';
 
 
     return 0;
