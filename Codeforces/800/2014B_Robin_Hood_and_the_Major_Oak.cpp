@@ -12,8 +12,16 @@ signed main() {
         int n, k;
         cin >> n >> k;
 
-        
-    }
+        int l = n - k + 1;
+        int r = n;
+
+        int odd = (r+1) / 2 - (l / 2); 
+
+        if(odd % 2 == 0)
+            cout << "YES\n";
+        else 
+            cout << "NO\n";
+     }
 
     return 0;
 }
