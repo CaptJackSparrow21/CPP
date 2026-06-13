@@ -11,6 +11,7 @@ signed main() {
     while(t--) {
         int n; cin >> n;
         string s; cin >> s;
+        int a = 0, b = 0, c = 0, d = 0;
         
     }
 
