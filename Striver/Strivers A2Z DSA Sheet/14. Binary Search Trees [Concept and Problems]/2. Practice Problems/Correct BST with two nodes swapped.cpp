@@ -10,8 +10,29 @@ struct TreeNode {
     TreeNode(int val): data(val), left(nullptr), right(nullptr) {} 
 };
 
+//TC = O(n) && SC = O(h)
 class Solution {
 public:
+    TreeNode *first, *middle, *last, *prev;
+
+    void inorder(TreeNode *root) {
+        if(!root)
+            return;
+
+        inorder(root->left);
+        if(prev && root->data < prev->data) {
+            if(!first) {
+                first = prev;
+                middle = root;
+            }
+            else 
+                last = root;
+        }
+
+        prev = root;
+        inorder(root->right);
+    }
+
     void recoverTree(TreeNode *root) {
         first = middle = last = nullptr;
         prev = nullptr;
@@ -53,6 +74,40 @@ TreeNode *buildTree(vector<string> &arr) {
     return root;
 }
 
+void printTree(TreeNode *root) {
+    if(!root) {
+        cout << "[]";
+        return;
+    }
+
+    vector<string> ans;
+    queue<TreeNode *> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        TreeNode *node = q.front();
+        q.pop();
+
+        if(node) {
+            ans.push_back(to_string(node->data));
+            q.push(node->left);
+            q.push(node->right);
+        }
+        else
+            ans.push_back("null");
+    }
+
+    while(!ans.empty() &&  ans.back() == "null")
+        ans.pop_back();
+
+    cout << "[";
+    for(int i=0; i<ans.size(); i++) {
+        cout << ans[i];
+        cout << ((i+1) == ans.size() ? "" : ",");
+    }
+    cout << "]";
+}
+
 signed main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
@@ -79,7 +134,9 @@ signed main() {
 
     TreeNode *root = buildTree(arr);
     Solution sol;
-    
+    sol.recoverTree(root);
+
+    printTree(root);
 
     return 0;
 }
