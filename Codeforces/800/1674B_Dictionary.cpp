@@ -10,7 +10,12 @@ signed main() {
     int t; cin >> t;
     while(t--) {
         string s; cin >> s;
-        
+
+        int ans = (s[0] - 'a') * 25 
+                + (s[1] - 'a')
+                + (s[0] > s[1]);
+
+        cout << ans << '\n';
     }
 
     return 0;
