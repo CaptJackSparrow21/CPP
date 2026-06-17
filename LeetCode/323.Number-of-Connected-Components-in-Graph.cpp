@@ -10,7 +10,8 @@ public:
     void dfs(int node, vector<int> &vis, vector<vector<int>> &adj) {
         vis[node] = 1;
         for(int neighb : adj[node]) {
-            
+            if(!vis[neighb])
+                dfs(neighb, vis, adj);
         }
     }
 
