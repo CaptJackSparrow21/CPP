@@ -6,26 +6,43 @@
 
 // @lc code=start
 class Solution {
+    typedef long long ll;
 public:
     char processStr(string s, long long k) {
-        string res = "";
-        for(char c : s) {
-            if(c == '*') {
-                if(!res.empty())
-                    res.pop_back();
-            }
+        int n = s.size();
+        ll len = 0;
+
+        for(auto &c : s) {
+            if(c == '*')
+                len = max(len - 1, 0LL);
             else if(c == '#')
-                res += res;
-            else if(c == '%')
-                reverse(res.begin(), res.end());
-            else 
-                res += c;
+                len *= 2;
+            else if(c != '%')
+                len++;
         }
-        
-        if(k >= res[k])
+
+        if(k >= len) 
             return '.';
 
-        return res[k];
+        for(int i=n-1;;i--) {
+            switch(s[i]) {
+                case '*':
+                    len++;
+                    break;
+                case '#':
+                    if(k >= len/2)
+                        k -= len/2;
+                    len /= 2;
+                    break;
+                case '%':
+                    k = len - 1 - k;
+                    break;
+                default :
+                    if(len == k+1)
+                        return s[i];
+                    len--;
+            }
+        }
     }
 };
 // @lc code=end
