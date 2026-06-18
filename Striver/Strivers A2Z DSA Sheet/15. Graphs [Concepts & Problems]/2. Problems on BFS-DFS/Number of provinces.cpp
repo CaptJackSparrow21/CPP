@@ -4,10 +4,31 @@
 using namespace std;
 #define int long long
 
+//TC = O(V * V) && SC = O(V)
 class Solution {
 public:
+    void dfs(int node, vector<vector<int>> &adj, vector<int> &vis) {
+        vis[node] = 1;
+
+        for(int neighb=0; neighb < adj.size(); neighb++) {
+            if(adj[node][neighb] == 1 && !vis[neighb]) {
+                dfs(neighb, adj, vis);
+            }
+        }
+    }
+
     int numProvinces(vector<vector<int>> adj) {
-        
+        int n = adj.size();
+        vector<int> vis(n, 0);
+        int provinces = 0;
+
+        for(int i=0; i<n; i++) {
+            if(!vis[i]) {
+                provinces++;
+                dfs(i, adj, vis);
+            }
+        }
+        return provinces;
     }
 };
 
@@ -32,7 +53,7 @@ signed main() {
             temp = "";
 
             if(c == ']') {
-                adj.push_back(curr__row);
+                adj.push_back(curr_row);
                 curr_row.clear();
             }
         }
