@@ -4,6 +4,13 @@
 using namespace std;
 #define int long long
 
+class Solution {
+public:
+    int numProvinces(vector<vector<int>> adj) {
+
+    }
+};
+
 signed main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
