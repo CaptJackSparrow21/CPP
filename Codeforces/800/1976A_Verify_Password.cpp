@@ -12,11 +12,10 @@ signed main() {
         int n; cin >> n;
         string s; cin >> s;
 
-        for(int i=0; i<n; i++) {
-            if(isdigit(s[i]))
-                continue;
-            else if()
-        }
+        string t = s;
+        sort(t.begin(), t.end());
+        
+        cout << (t == s ? "YES\n" : "NO\n");
     }
 
     return 0;
