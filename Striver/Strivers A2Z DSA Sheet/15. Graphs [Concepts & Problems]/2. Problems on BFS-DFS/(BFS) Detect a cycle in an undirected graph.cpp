@@ -4,11 +4,12 @@
 using namespace std;
 #define int long long
 
+//TC = O(V + E) && SC = O(V)
 class Solution {
 public:
     bool bfs(int start, vector<int> adj[], vector<int> &vis) {
         queue<pair<int, int>> q;
-        q.push({start, i});
+        q.push({start, -1});
         vis[start] = 1;
 
         while(!q.empty()) {
@@ -50,9 +51,10 @@ signed main() {
     string s; 
     getline(cin, s);
     
-    vector<int> adj[];
+    vector<int> *adj = new vector<int>[V];
     vector<int> curr_row;
     string temp = "";
+    int row = 0;
 
     for(char c : s) {
         if(c >= '0' && c <= '9')
@@ -60,10 +62,13 @@ signed main() {
 
         if((c == ',' || c == ']') && !temp.empty()) {
             curr_row.push_back(stoi(temp));
-            temp == "";
+            temp = "";
+            }
 
-            if(c == ']') {
-                adj.push_back(curr_row);
+        if(c == ']') {
+            if(!curr_row.empty()) {
+                adj[row] = curr_row;
+                row++;
                 curr_row.clear();
             }
         }
