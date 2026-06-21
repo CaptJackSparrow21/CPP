@@ -22,10 +22,12 @@ signed main() {
             }
             else {
                 int num = s[i] - '0';
-                ans += char
+                ans += char('a' + num - 1);
+                i--;
             }
         }
-
+                
+        reverse(ans.begin(), ans.end());
         
         cout << ans << '\n';
     }
