@@ -12,13 +12,8 @@ signed main() {
         int a, b, k;
         cin >> a >> b >> k;
 
-        int ans = 0;
-        for(int i=0; i<k; i++) {
-            if(i % 2 == 0) 
-                ans += a;
-            else 
-                ans -= b;
-        }
+        int ans = a * ((k+1) / 2);
+        ans -= b * (k / 2);
         cout << ans << '\n';
     }
 
