@@ -10,7 +10,9 @@ signed main() {
     int n, m, a;
     cin >> n >> m >> a;
 
-    cout << min({n, m, a});
+    int ans1 = (n + a - 1) / a;
+    int ans2 = (m + a - 1) / a;
+    cout << ans1 * ans2;
 
     return 0;
 }
