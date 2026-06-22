@@ -1,0 +1,15 @@
+{
+  "Python Main Template": {
+    "prefix": "pytest",
+        "body": [
+            "import sys",
+            "input = sys.stdin.readline",
+            "import math",
+            "from math import *",
+            "",
+            "",
+            "$0"
+        ],
+    "description": "Basic python main function template"
+  }
+}
