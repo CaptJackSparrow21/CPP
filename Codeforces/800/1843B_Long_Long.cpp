@@ -17,8 +17,19 @@ signed main() {
 
         for(int i=0; i<n; i++) {
             int x; cin >> x;
-            sum 
+            sum += abs(x);
+
+            if(x < 0) {
+                if(!neg) {
+                    blocks++;
+                    neg = true;
+                }
+            }
+            else if(x > 0)
+                neg = false;
         }
+
+        cout << sum << " " << blocks << '\n';
 
     }
 
