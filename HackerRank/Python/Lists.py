@@ -19,4 +19,14 @@ for _ in range(n) :
     elif s[0] == "remove" :
         l.remove(int(s[1]))
 
-    elif
+    elif s[0] == "append" :
+        l.append(int(s[1]))
+
+    elif s[0] == "sort" :
+        l.sort()
+
+    elif s[0] == "pop" :
+        l.pop()
+
+    elif s[0] == "reverse" :
+        l.reverse()
