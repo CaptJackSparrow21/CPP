@@ -50,7 +50,15 @@ signed main() {
     getline(cin, s);
 
     stringstream ss(s);
-    while(getline(ss, ','))
+    string word;
+    while(ss >> word)
+        wordList.push_back(word);
+
+    cin >> startWord;
+    cin >> targetWord;
+
+    Solution sol;
+    cout << sol.wordLadderLength(startWord, targetWord, wordList);
 
     return 0;
 }
