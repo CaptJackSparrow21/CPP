@@ -7,10 +7,8 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    string s1, s2;
-    cin >> s1 >> s2;
-
-    
+    int a; cin >> a;
+    cout << 6 * a * (a-1) + 1 ;
 
     return 0;
 }
