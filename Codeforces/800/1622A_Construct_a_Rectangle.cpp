@@ -12,9 +12,6 @@ signed main() {
         int a, b, c;
         cin >> a >> b >> c;
 
-        if((a + b + c) % 2 == 1)
-            cout << "NO\n";
-        else {
             if((a == b + c) || (b == a + c) ||
                (c == a + b))
                 cout << "YES\n";
@@ -27,7 +24,6 @@ signed main() {
             else 
                 cout << "NO\n";
         }
-    }
 
     return 0;
 }
