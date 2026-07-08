@@ -8,6 +8,7 @@ public:
         for(int dr = -1; dr <= 1; dr++) {
             for(int dc = -1; dc <= 1; dc++) {
                 if(dr == 0 && dc == 0) continue;
+                if(dr != 0 && dc != 0) continue;
 
                 int nr = r + dr;
                 int nc = c + dc;
