@@ -25,7 +25,7 @@ public:
         return false;
     }
 
-    bool isCycle(int N, vector<int> adj[]) {
+    bool isCyclic(int N, vector<int> adj[]) {
         vector<int> vis(N, 0), pathVis(N, 0);
 
         for(int i=0; i<N; i++) {
@@ -43,7 +43,31 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    
+    int N; cin >> N;
+    cin.ignore();
+
+    string s; 
+    getline(cin, s);
+
+    vector<int> adj[N];
+    int row = -1;
+    string num = "";
+
+    for(char c : s) {
+        if(c == '[')
+            row++;
+        else if(isdigit(c)) 
+            num += c;
+        else {
+            if(!num.empty()) {
+                adj[row - 1].push_back(stoi(num));
+                num.clear();
+            }
+        }
+    }
+
+    Solution sol;
+    cout << (sol.isCyclic(N, adj) ? "True" : "False");
 
     return 0;
 }
