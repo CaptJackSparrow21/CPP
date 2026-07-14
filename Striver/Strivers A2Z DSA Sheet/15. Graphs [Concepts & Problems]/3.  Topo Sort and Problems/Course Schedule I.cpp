@@ -20,8 +20,29 @@ public:
         vector<int> indegree(N, 0);
         for(int i=0; i<N; i++) {
             for(int it : adj[i])
-                indegree[it]++''
+                indegree[it]++;
         }
+
+        queue<int> q;
+        for(int i=0; i<N; i++) {
+            if(indegree[i] == 0)
+                q.push(i);
+        }
+
+        int count = 0;
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+
+            count++;
+
+            for(int it : adj[node]) {
+                indegree[it]--;
+                if(indegree[it] == 0)
+                    q.push(it);
+            }
+        }
+        return count == N;
     }
 };
 
@@ -33,7 +54,29 @@ signed main() {
     int N; cin >> N;
     cin.ignore();
 
+    string s;
+    getline(cin, s);
+    
     vector<vector<int>> arr;
+    vector<int> row;
+    string temp = "";
+
+    for(char c : s) {
+        if(c >= '0' && c <= '9')
+            temp += c;
+        else if((c == ',' || c == ']') && !temp.empty()) {
+            row.push_back(stoi(temp));
+            temp = "";
+
+            if(c == ']') {
+                arr.push_back(row);
+                row.clear();
+            }
+        }
+    }
+
+    Solution sol;
+    cout << (sol.canFinish(N, arr) ? "True" : "False");
 
     return 0;
 }
