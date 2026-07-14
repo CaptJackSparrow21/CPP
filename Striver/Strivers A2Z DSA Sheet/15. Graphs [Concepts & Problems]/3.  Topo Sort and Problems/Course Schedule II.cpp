@@ -8,7 +8,25 @@ using namespace std;
 class Solution {
 public:
     vector<int> findOrder(int N, vector<vector<int>> arr) {
+        vector<int> adj[N];
 
+        for(auto it : arr) {
+            int course = it[0];
+            int pre = it[1];
+
+            adj[pre].push_back(course);
+        }
+
+        vector<int> indegree(N, 0);
+        for(int i=0; i<N; i++) {
+            for(auto it : adj[i])
+                indegree[it]++;
+        }
+
+        queue<int> q;
+        for(int i=0; i<N; i++) {
+            if(indegree[i])
+        }
     }
 };
 
@@ -28,8 +46,29 @@ signed main() {
     string temp = "";
 
     for(char c : s) {
-        
+        if(c >= '0' && c <= '9')
+            temp += c;
+        else if((c == ',' || c == ']') && !temp.empty()) {
+            row.push_back(stoi(temp));
+            temp = "";
+
+            if(c == ']') {
+                arr.push_back(row);
+                row.clear();
+            }
+        }
     }
+
+    Solution sol;
+    vector<int> ans = sol.findOrder(N, arr);
+
+    cout << '[';
+    for(int i=0; i<ans.size(); i++) {
+        cout << ans[i];
+        if(i+1 != ans.size())
+            cout << ',';
+    }
+    cout << ']';
 
     return 0;
 }
