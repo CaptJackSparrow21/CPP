@@ -4,46 +4,46 @@
 using namespace std;
 #define int long long
 
-//Approach - DFS + Cycle Detection
-//TC = O(V + E) && SC = O(V)
-class Solution {
-public:
-    bool dfs(int node, vector<int> adj[], vector<int> &vis,
-             vector<int> &pathVis, vector<int> &check) {
-        vis[node] = 1;
-        pathVis[node] = 1;
+// //Approach - DFS + Cycle Detection
+// //TC = O(V + E) && SC = O(V)
+// class Solution {
+// public:
+//     bool dfs(int node, vector<int> adj[], vector<int> &vis,
+//              vector<int> &pathVis, vector<int> &check) {
+//         vis[node] = 1;
+//         pathVis[node] = 1;
 
-        for(auto it : adj[node]) {
-            if(!vis[it]) {
-                if(dfs(it, adj, vis, pathVis, check))
-                    return true;
-            }
-            else if(pathVis[it])
-                return true;
-        }
+//         for(auto it : adj[node]) {
+//             if(!vis[it]) {
+//                 if(dfs(it, adj, vis, pathVis, check))
+//                     return true;
+//             }
+//             else if(pathVis[it])
+//                 return true;
+//         }
 
-        pathVis[node] = 0;
-        check[node] = 1;
+//         pathVis[node] = 0;
+//         check[node] = 1;
 
-        return false;
-    }
+//         return false;
+//     }
 
-    vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
-        vector<int> vis(V, 0), pathVis(V, 0), check(V, 0);
+//     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+//         vector<int> vis(V, 0), pathVis(V, 0), check(V, 0);
 
-        for(int i=0; i<V; i++) {
-            if(!vis[i])
-                dfs(i, adj, vis, pathVis, check);
-        }
-        vector<int> ans;
+//         for(int i=0; i<V; i++) {
+//             if(!vis[i])
+//                 dfs(i, adj, vis, pathVis, check);
+//         }
+//         vector<int> ans;
 
-        for(int i=0; i<V; i++) {
-            if(check[i])
-                ans.push_back(i);
-        }
-        return ans;
-    }
-};
+//         for(int i=0; i<V; i++) {
+//             if(check[i])
+//                 ans.push_back(i);
+//         }
+//         return ans;
+//     }
+// };
 
 //Approach - Reverse Graph + Kahn's Algorithm
 //TC = SC = O(V + E)
@@ -63,7 +63,24 @@ public:
         queue<int> q;
         for(int i=0; i<V; i++) {
             if(outdegree[i] == 0)
+                q.push(i);
         }
+
+        vector<int> ans;
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+
+            ans.push_back(node);
+            for(auto parent : revAdj[node]) {
+                outdegree[parent]--;
+
+                if(outdegree[parent] == 0)  
+                    q.push(parent);
+            }
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
     }
 };
 
