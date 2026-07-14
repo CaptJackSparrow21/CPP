@@ -8,7 +8,19 @@ using namespace std;
 class Solution {
 public:
     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
-        
+        vector<int> vis(V, 0), pathVis(V, 0), check(V, 0);
+
+        for(int i=0; i<V; i++) {
+            if(!vis[i])
+                dfs(i, adj, vis, pathVis, check);
+        }
+        vector<int> ans;
+
+        for(int i=0; i<V; i++) {
+            if(check[i])
+                ans.push_back(i);
+        }
+        return ans;
     }
 };
 
