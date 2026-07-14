@@ -4,13 +4,28 @@
 using namespace std;
 #define int long long
 
-//
+//Approach - DFS + Cycle Detection
+//TC = O(V + E) && SC = O(V)
 class Solution {
 public:
     bool dfs(int node, vector<int> adj[], vector<int> &vis,
              vector<int> &pathVis, vector<int> &check) {
         vis[node] = 1;
         pathVis[node] = 1;
+
+        for(auto it : adj[node]) {
+            if(!vis[it]) {
+                if(dfs(it, adj, vis, pathVis, check))
+                    return true;
+            }
+            else if(pathVis[it])
+                return true;
+        }
+
+        pathVis[node] = 0;
+        check[node] = 1;
+
+        return false;
     }
 
     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
@@ -27,6 +42,28 @@ public:
                 ans.push_back(i);
         }
         return ans;
+    }
+};
+
+//Approach - Reverse Graph + Kahn's Algorithm
+//TC = SC = O(V + E)
+class Solution {
+public:
+    vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+        vector<int> revAdj[V];
+        vector<int> outdegree(V, 0);
+
+        for(int i=0; i<V; i++) {
+            outdegree[i] = adj[i].size();
+
+            for(auto it : adj[i])
+                revAdj[it].push_back(i);
+        }
+
+        queue<int> q;
+        for(int i=0; i<V; i++) {
+            if(outdegree[i] == 0)
+        }
     }
 };
 
@@ -64,7 +101,7 @@ signed main() {
     cout << '[';
     for(int i=0; i<ans.size(); i++) {
         cout << ans[i];
-        if(i+1 == ans.size())
+        if(i+1 != ans.size())
             cout << ',';
     }
     cout << ']';
