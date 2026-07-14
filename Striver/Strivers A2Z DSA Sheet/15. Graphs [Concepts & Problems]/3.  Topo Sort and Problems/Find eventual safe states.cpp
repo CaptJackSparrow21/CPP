@@ -7,6 +7,12 @@ using namespace std;
 //
 class Solution {
 public:
+    bool dfs(int node, vector<int> adj[], vector<int> &vis,
+             vector<int> &pathVis, vector<int> &check) {
+        vis[node] = 1;
+        pathVis[node] = 1;
+    }
+
     vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
         vector<int> vis(V, 0), pathVis(V, 0), check(V, 0);
 
