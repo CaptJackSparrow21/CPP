@@ -4,7 +4,7 @@
 using namespace std;
 #define int long long
 
-//
+//TC = SC = O(V + E)
 class Solution {
 public:
     vector<int> findOrder(int N, vector<vector<int>> arr) {
@@ -25,8 +25,26 @@ public:
 
         queue<int> q;
         for(int i=0; i<N; i++) {
-            if(indegree[i])
+            if(indegree[i] == 0)
+                q.push(i);
         }
+
+        vector<int> topo;
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+
+            topo.push_back(node);
+            for(int it : adj[node]) {
+                indegree[it]--;
+                if(indegree[it] == 0)
+                    q.push(it);
+            }
+        }
+        if(topo.size() == N)
+                return topo;
+            
+        return {};
     }
 };
 
