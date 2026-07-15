@@ -2,6 +2,7 @@ class Solution {
 public:
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
         int v = graph.size();
+        vector<vector<int>> adj = graph;
         vector<int> revAdj[v];
         vector<int> outdegree(v, 0);
 
@@ -22,6 +23,17 @@ public:
         while(!q.empty()) {
             int node = q.front();
             q.pop();
+
+            ans.push_back(node);
+            for(auto parent : revAdj[node]) {
+                outdegree[parent]--;
+
+                if(outdegree[parent] == 0)
+                    q.push(parent);
+            }
         }
+
+        sort(ans.begin(), ans.end());
+        return ans;
     }
 };
