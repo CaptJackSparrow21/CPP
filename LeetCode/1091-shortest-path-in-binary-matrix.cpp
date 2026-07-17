@@ -2,42 +2,42 @@ class Solution {
 public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         int n = grid.size();
-        int m = grid[0].size();
 
-        pair<int, int> source = {0, 0};
-        pair<int, int> destination = {n-1, n-1};
+        if(grid[0][0] == 1 || grid[n-1][n-1] == 1)
+            return -1;
 
-        if(source == destination)
-            return 0;
+        if(n == 1)
+            return 1;
 
-        vector<vector<int>> dist(n, vector<int> (m, 1e9));
-        queue<pair<int, pair<int, int>>> q;
-        dist[source.first][source.second] = 0;
-        q.push({0, {source.first, source.second}});
+        vector<vector<int>> dist(n, vector<int> (n, 1e9));
 
-        int dr[] = {-1, 1, 0, 0};
-        int dc[] = {0, 0, -1, 1};
+        queue<pair<int, int>> q;
+
+        dist[0][0] = 1;
+        q.push({0, 0});
 
         while(!q.empty()) {
-            auto it = q.front();
+            auto [r, c] = q.front();
             q.pop();
 
-            int d = it.first;
-            int r = it.second.first;
-            int c = it.second.second;
+            for(int dr = -1; dr <= 1; dr++) {
+                for(int dc = -1; dc <= 1; dc++) {
+                    if(dr == 0 && dc == 0)
+                       continue;
 
-            for(int k=0; k<3; k++) {
-                int nr = r + dr[k];
-                int nc = c + dc[k];
+                    int nr = r + dr;
+                    int nc = c + dc;
 
-                if(nr >= 0 && nr < n && nc >= 0 && nc < m
-                   && grid[nr][nc] == 1 && d + 1 < dist[nr][nc]) {
-                    dist[nr][nc] =  d + 1;
+                    if(nr >= 0 && nr < n && nc >= 0 && nc < n
+                      && grid[nr][nc] == 0 && 
+                      dist[r][c] + 1 < dist[nr][nc]) {
+                        dist[nr][nc] = dist[r][c] + 1;
 
-                    if(nr == destination.first && nc == destination.second)
-                        return d + 1;
+                        if(nr == n-1 && nc == n-1)
+                            return dist[nr][nc];
 
-                    q.push({d + 1, {nr, nc}});
+                        q.push({nr, nc});
+                    }
                 }
             }
         }
