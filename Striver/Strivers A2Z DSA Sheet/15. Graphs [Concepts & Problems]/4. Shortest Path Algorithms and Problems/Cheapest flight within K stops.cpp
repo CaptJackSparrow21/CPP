@@ -4,7 +4,7 @@
 using namespace std;
 #define int long long
 
-//
+//TC = O(E) && SC = O(V + E)
 class Solution {
 public:
     int CheapestFlight(int n, vector<vector<int>> &flights, 
@@ -12,7 +12,7 @@ public:
         vector<pair<int, int>> adj[n];
         
         for(auto &it : flights) 
-            adj(it[0].push_back({it[1], it[2]}));
+            adj[it[0]].push_back({it[1], it[2]});
 
         queue<pair<int, pair<int, int>>> q;
         //{stops, {node, cost}}
@@ -20,6 +20,7 @@ public:
         vector<int> dist(n, 1e9);
         dist[src] = 0;
         q.push({0, {src, 0}});
+        
         while(!q.empty()) {
             auto it = q.front();
             q.pop();
@@ -35,9 +36,13 @@ public:
                 int adjNode = x.first;
                 int wt = x.second;
 
-                if(cost + wt < dist[adjNode] && )
+                if(cost + wt < dist[adjNode] && stops <= K) {
+                    dist[adjNode] = cost + wt;
+                    q.push({stops + 1, {adjNode, dist[adjNode]}});
+                }
             }
         }
+        return dist[dst] == 1e9 ? -1 : dist[dst];
     }
 };
 
@@ -46,7 +51,7 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n, K, src, dist;
+    int n, K, src, dst;
     cin >> n;
     cin.ignore();
     string s; cin >> s;
@@ -62,7 +67,7 @@ signed main() {
         if(c >= '0' && c <= '9')
             temp += c;
         else if((c == ',' || c == ']') && !temp.empty()) {
-            row.push_back(stoi(temp));
+            row.push_back(stoll(temp));
             temp = "";
 
             if(c == ']') {
@@ -73,7 +78,7 @@ signed main() {
     }
 
     Solution sol;
-    cout << sol.CheapestFlight(n, flights, src, dist, K);
+    cout << sol.CheapestFlight(n, flights, src, dst, K);
 
     return 0;
 }
