@@ -10,10 +10,9 @@ signed main() {
     int n, m, a, b;
     cin >> n >> m >> a >> b;
 
-    int 1by1 = n * a;
-    int mplusrem = b + (n - m) * a;
-
-    cout << min(1by1, mplusrem);
+    cout << min({n * a,
+                ((n + m - 1) / m) * b,
+                (n / m) * b + (n % m) * a});
 
     return 0;
 }
