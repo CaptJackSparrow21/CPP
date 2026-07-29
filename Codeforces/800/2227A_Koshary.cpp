@@ -12,7 +12,10 @@ signed main() {
         int x, y;
         cin >> x >> y;
 
-        
+        if(x % 2 && y % 2)
+            cout << "NO\n";
+        else 
+            cout << "YES\n";
     }
  
     return 0;
