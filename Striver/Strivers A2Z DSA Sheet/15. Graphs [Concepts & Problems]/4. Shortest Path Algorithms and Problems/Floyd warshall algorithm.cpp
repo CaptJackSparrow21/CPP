@@ -23,15 +23,20 @@ public:
                 for(int j=0; j<n; j++) {
                     if(matrix[i][k] != inf &&
                        matrix[k][j] != inf) {
-                        matrix[i][j] = min(matrix[i]p)
+                        matrix[i][j] = min(matrix[i][j],
+                        matrix[i][k] + matrix[k][j]);
                     }
                 }
             }
         }
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<n; j++) {
+                if(matrix[i][j] == inf)
+                    matrix[i][j] = -1;
+            }
+        }
     }
 };
-
-
 
 signed main() {
     ios_base::sync_with_stdio(0);
@@ -60,6 +65,21 @@ signed main() {
 
     Solution sol;
     sol.shortestDistance(matrix);
+
+    cout << '[';
+    for(int i=0; i<matrix.size(); i++) {
+        cout << '[';
+
+        for(int j=0; j<matrix.size(); j++) {
+            cout << matrix[i][j];
+            if(j+1 != matrix[i].size())
+                cout << ',';
+        }
+        cout << ']';
+        if(i+1 != matrix.size())
+            cout << ',';
+    }
+    cout << ']';
 
     return 0;
 }
