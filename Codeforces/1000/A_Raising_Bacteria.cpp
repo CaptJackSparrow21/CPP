@@ -7,11 +7,16 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    int x; cin >> x;
-    if(x % 2)
-        cout << 2;
-    else 
-        cout << 1;
+    int n; cin >> n;
+    cout << __builtin_popcount(n);
+
+    // int ans = 0;
+    // while(n) {
+    //     n = n & (n - 1);
+    //     ans++;
+    // }
+
+    // cout << ans;
 
     return 0;
 }
