@@ -47,23 +47,44 @@ signed main() {
     cout.tie(0);
 
     int V; cin >> V;
+    cin.ignore();
     string s;
     getline(cin, s);
 
-    vector<vector<int>> adj;
-    vector<int> row;
-    string temp = "";
-    for(char c : s) {
-        if(c == '-' || isdigit(c))
-            temp += c;
-        else if((c == ',' || c == ']') && !temp.empty()) {
-            row.push_back(stoll(temp));
-            temp = "";
+    vector<vector<int>> adj[V];
 
-            if(c == ']') {
-                adj.push_back(row);
-                row.clear();
+    int vertex = -1;
+    int depth = 0;
+    vector<int> edge;
+    string num = "";
+
+    for(char c : s) {
+
+        if(c == '[') {
+            depth++;
+
+            // New vertex starts
+            if(depth == 2)
+                vertex++;
+        }
+
+        else if(isdigit(c) || c == '-')
+            num += c;
+
+        else {
+
+            if(!num.empty()) {
+                edge.push_back(stoll(num));
+                num.clear();
             }
+
+            if(c == ']' && edge.size() == 2) {
+                adj[vertex].push_back(edge);
+                edge.clear();
+            }
+
+            if(c == ']')
+                depth--;
         }
     }
 
