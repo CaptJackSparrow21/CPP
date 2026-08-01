@@ -31,7 +31,7 @@ public:
         return findParent(u) == findParent(v);
     }
 
-    void unionByRank(int u, int v) {
+    void unionByRank(int u, int v) { //by height
         int pu = findParent(u);
         int pv = findParent(v);
 
@@ -48,7 +48,7 @@ public:
         }
     }
 
-    void unionBySize(int u, int v) {
+    void unionBySize(int u, int v) { //by #nodes
         int pu = findParent(u);
         int pv = findParent(v);
 
@@ -99,10 +99,49 @@ signed main() {
         }
         else {
             if(reading) {
-                temp.
+                temp.push_back(num);
+                num = 0;
+                reading = false;
+            }
+
+            if(c == ']') {
+                if(!temp.empty()) {
+                    args.push_back(temp);
+                    temp.clear();
+                }
             }
         }
     }
+
+    DisjointSet *ds = nullptr;
+    cout << "[";
+    for(int i=0; i<ops.size(); i++) {
+        if(i)
+            cout << ",";
+
+        if(ops[i] == "DisjointSet") {
+            ds = new DisjointSet(args[i][0]);
+            cout << "null";
+        }
+
+        else if(ops[i] == "unionByRank") {
+            ds->unionByRank(args[i][0], args[i][1]);
+            cout << "null";
+        }
+
+        else if(ops[i] == "unionBySize") {
+            ds->unionBySize(args[i][0], args[i][1]);
+            cout << "null";
+        }
+
+        else if(ops[i] == "find") {
+            cout << (ds->find(args[i][0], args[i][1]) ? 
+                        "true" : "false");
+        }
+    }
+
+    cout << "]\n";
+    delete ds;
 
     return 0;
 }
