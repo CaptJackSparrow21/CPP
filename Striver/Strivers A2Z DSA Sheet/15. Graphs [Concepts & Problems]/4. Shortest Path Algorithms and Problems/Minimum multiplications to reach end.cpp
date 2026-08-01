@@ -4,13 +4,37 @@
 using namespace std;
 #define int long long
 
-//
+//TC = O(1e5 * arr.size())
+//SC = O(1e5)
 class Solution {
 public:
-    int minimumMulitplications(vector<int> &arr, int start, int end) {
+    int minimumMultiplications(vector<int> &arr, int start, int end) {
         const int mod = 1e5;
+        vector<int> dist(mod, INT_MAX);
+        queue<pair<int, int>> q;
+
+        dist[start] = 0;
+        q.push({start, 0});
+
+        while(!q.empty()) {
+            auto [node, steps] = q.front();
+            q.pop();
+
+            for(int x : arr) {
+                int nxt = (node * x) % mod;
+                if(steps + 1 < dist[nxt]) {
+                    dist[nxt] = steps + 1;
+
+                    if(nxt == end)
+                        return steps + 1;
+
+                    q.push({nxt, steps + 1});
+                }
+            }
+        }
+        return -1;
     }
-}
+};
 
 signed main() {
     ios_base::sync_with_stdio(0);
@@ -36,7 +60,7 @@ signed main() {
     }
     
     Solution sol;
-    cout << sol.minimumMulitplications(arr, start, end);
+    cout << sol.minimumMultiplications(arr, start, end);
 
     return 0;
 }
