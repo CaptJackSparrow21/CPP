@@ -7,7 +7,11 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    
+    int t; cin >> t;
+    while(t--) {
+        int x; cin >> x;
+        cout << ((x > 10) ? "NO\n" : "YES\n");
+    }
 
     return 0;
 }
