@@ -9,9 +9,9 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int x, y;
-        cin >> x >> y;
-        cout << x - y << '\n';
+        int n, m;
+        cin >> n >> m;
+        cout << ((n < m) ? 0 : n - m) << '\n';
     }
 
     return 0;

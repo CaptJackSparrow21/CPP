@@ -11,7 +11,7 @@ signed main() {
     while(t--) {
         int x, y;
         cin >> x >> y;
-        cout << x - y << '\n';
+        cout << y - x << '\n';
     }
 
     return 0;
