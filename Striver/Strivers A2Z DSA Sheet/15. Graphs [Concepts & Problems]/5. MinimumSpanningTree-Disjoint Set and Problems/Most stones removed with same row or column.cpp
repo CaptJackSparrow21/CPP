@@ -7,7 +7,7 @@ using namespace std;
 //TC : O(n α(N)) 
 //SC : O(maxRow + maxCol)
 //α(N) -> inverse Ackermann function
-class Solution {
+class DisjointSet {
 public:
     vector<int> parent, sz;
 
@@ -37,7 +37,10 @@ public:
         parent[v] = u;
         sz[u] += sz[v];
     }
+};
 
+class Solution {
+public:
     int maxRemove(vector<vector<int>> &stones, int n) {
         int maxRow = 0, maxCol = 0;
 
@@ -56,8 +59,17 @@ public:
 
             ds.unionBySize(rowNode, colNode);
 
-            usedNodes.insert()
+            usedNodes.insert(rowNode);
+            usedNodes.insert(colNode);
         }
+
+        int comp = 0;
+        for(int node : usedNodes) {
+            if(ds.findPar(node) == node)
+                comp++;
+        }
+
+        return n - comp;
     }
 };
 
