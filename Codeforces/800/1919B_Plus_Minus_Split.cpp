@@ -11,7 +11,14 @@ signed main() {
     while(t--) {
         int n; cin >> n;
         string s; cin >> s;
-        
+
+        int plus = 0, minus = 0;
+        for(char c : s) {
+            if(c == '+') plus++;
+            else minus++;
+        }
+
+        cout << abs(plus - minus) << '\n';
     }
 
     return 0;
