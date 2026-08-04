@@ -10,7 +10,11 @@ signed main() {
     int t; cin >> t;
     while(t--) {
         int n; cin >> n;
-        
+        for(int a=2; a<=n; a++) {
+            for(int b=2; b<=n; b++) {
+                if(a)
+            }
+        }
     }
 
     return 0;
