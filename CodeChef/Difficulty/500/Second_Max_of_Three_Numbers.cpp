@@ -7,10 +7,12 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    int t; cin >> t;
-    while(t--) {
-        int n; cin >> n;
-        
+    int n; cin >> n;
+    while(n--) {
+        vector<int> a(3);
+        for(int &i : a) cin >> i;
+        sort(a.rbegin(), a.rend());
+        cout << a[1] << '\n';
     }
 
     return 0;
