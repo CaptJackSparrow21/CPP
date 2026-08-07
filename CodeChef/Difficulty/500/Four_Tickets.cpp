@@ -9,14 +9,11 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int x, y;
-        cin >> x >> y;
-        if(x - y > 0)
-            cout << "LOSS\n";
-        else if(x - y < 0)
-            cout << "PROFIT\n";
+        int x; cin >> x;
+        if(4 * x <= 1000)
+            cout << "YES\n";
         else 
-            cout << "NEUTRAL\n";
+            cout << "NO\n";
     }
 
     return 0;
