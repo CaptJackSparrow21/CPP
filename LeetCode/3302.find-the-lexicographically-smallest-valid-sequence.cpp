@@ -5,40 +5,52 @@
  */
 
 // @lc code=start
+
 class Solution {
 public:
     vector<int> validSequence(string word1, string word2) {
-        int n = word1.size(), m = word2.size();
-        vector<int> suff(m + 1, n);
-        int j = m - 1;
 
-        for(int i=n-1; i>=0 && j>=0; i--) {
-            if(word1[i] == word2[j]) {
-                suff[j] = i;
+        int n = word1.size(), m = word2.size();
+        vector<int> suf(n + 1, 0);
+        int j = m - 1;
+        
+        for (int i = n - 1; i >= 0; i--) {
+            if (j >= 0 && word1[i] == word2[j]) {
                 j--;
             }
+            suf[i] = m - 1 - j;
         }
-
-        vector<int> ans;
+        
         int i = 0;
-        bool used = false;
+        j = 0;
+        bool used_change = false;
+        vector<int> result;
+        
+        while (j < m && i < n) {
 
-        for(int j=0; j<m && i<n; j++) {
-            while(i < n) {
-                if(word1[i] == word2[j]) {
-                    ans.push_back(i++);
-                    break;
-                }
-
-                if(!used && j+1 <= m && suff[j+1] > i) {
-                    ans.push_back(i++);
-                    used = true;
-                    break;
-                }
+            if (word1[i] == word2[j]) {
+                result.push_back(i);
                 i++;
+                j++;
+
+            } else {
+
+                if (!used_change && suf[i + 1] >= m - (j + 1)) {
+                    result.push_back(i);
+                    used_change = true;
+                    i++;
+                    j++;
+
+                } else {
+                    i++;
+                }
             }
         }
-        return ans.size() == m ? ans : vector<int> ();
+        
+        if (j == m) {
+            return result;
+        }
+        return {};
     }
 };
 // @lc code=end
