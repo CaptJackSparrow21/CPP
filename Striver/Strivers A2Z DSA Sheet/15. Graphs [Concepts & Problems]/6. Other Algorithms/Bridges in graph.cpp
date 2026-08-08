@@ -4,7 +4,7 @@
 using namespace std;
 #define int long long
 
-//
+//TC = SC = O(V + E)
 class Solution {
 public:
     vector<vector<int>> adj, ans;
