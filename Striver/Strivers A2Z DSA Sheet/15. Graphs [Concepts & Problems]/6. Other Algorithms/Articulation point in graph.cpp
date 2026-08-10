@@ -73,60 +73,60 @@ public:
 signed main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    cout.tie(0);
 
-    int V; cin >> V ;
+    int V;
+    cin >> V;
     cin.ignore();
+
     string s;
     getline(cin, s);
 
-    vector<vector<int>> adj[V];
+    vector<int> adj[V];
 
     int vertex = -1;
     int depth = 0;
-    vector<int> edge;
-    string num = "";
+    string num;
 
-    for(char c : s) {
+    for (char c : s) {
 
-        if(c == '[') {
+        if (c == '[') {
             depth++;
 
-            // New vertex starts
-            if(depth == 2)
+            // [[ means starting adjacency list of a new vertex
+            if (depth == 2)
                 vertex++;
         }
 
-        else if(isdigit(c) || c == '-')
+        else if (isdigit(c)) {
             num += c;
+        }
 
-        else {
+        else if (c == ',' || c == ']') {
 
-            if(!num.empty()) {
-                edge.push_back(stoll(num));
+            if (!num.empty()) {
+                adj[vertex].push_back(stoll(num));
                 num.clear();
             }
 
-            if(c == ']' && edge.size() == 2) {
-                adj[vertex].push_back(edge);
-                edge.clear();
-            }
-
-            if(c == ']')
+            if (c == ']')
                 depth--;
         }
     }
 
     Solution sol;
+
     vector<int> ans = sol.articulationPoints(V, adj);
 
-    cout << '\n';
-    for(int i=0; i<ans.size(); i++) {
+    cout << "[";
+
+    for (int i = 0; i < ans.size(); i++) {
+        if (i)
+            cout << ",";
+
         cout << ans[i];
-        if(i+1 != ans.size())
-            cout << ',';
     }
-    cout << ']';
+
+    cout << "]\n";
 
     return 0;
 }
