@@ -9,8 +9,9 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int n; cin >> n;
-        
+        int x, y;
+        cin >> x >> y;
+        cout << y / x << '\n';
     }
 
     return 0;
