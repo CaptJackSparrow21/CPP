@@ -14,6 +14,8 @@ signed main() {
     sort(a.begin(), a.end());
     int ans = 0;
     for(int i=0; i<m; i++) {
+        if(a[i] >= 0)
+            break;
         ans += abs(a[i]);
     }
     cout << ans;
