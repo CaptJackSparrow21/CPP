@@ -9,12 +9,9 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        if((a > b + c) || (b > a + c) || (c > a + b))
-            cout << "Yes\n";
-        else 
-            cout << "No\n";
+        int c, x, y;
+        cin >> c >> x >> y;
+        cout << (c - x) * y << '\n';
     }
 
     return 0;
