@@ -9,14 +9,11 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int x, y, z;
-        cin >> x >> y >> z;
-        if(x + y <= z)
-            cout << "2\n";
-        else if(x <= z)
-            cout << "1\n";
+        int x; cin >> x;
+        if(0.1 * x > 100)
+            cout << 0.1 * x << '\n';
         else 
-            cout << "0\n";
+            cout << "100\n";
     }
 
     return 0;
