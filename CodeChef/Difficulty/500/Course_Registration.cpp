@@ -7,15 +7,12 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n, k;
-    cin >> n >> k;
-    int ans = 0;
-    while(n--) {
-        int x; cin >> x;
-        if(x % k == 0)
-            ans++;
+    int t; cin >> t;
+    while(t--) {
+        int n, m, k;
+        cin >> n >> m >> k;
+        cout << ((m - k) >= n ? "Yes\n" : "No\n");
     }
-    cout << ans;
 
     return 0;
 }

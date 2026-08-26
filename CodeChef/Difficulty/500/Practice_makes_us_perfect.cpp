@@ -7,14 +7,14 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n, k;
-    cin >> n >> k;
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
     int ans = 0;
-    while(n--) {
-        int x; cin >> x;
-        if(x % k == 0)
-            ans++;
-    }
+    if(a > 9) ans++;
+    if(b > 9) ans++;
+    if(c > 9) ans++;
+    if(d > 9) ans++;
+
     cout << ans;
 
     return 0;
