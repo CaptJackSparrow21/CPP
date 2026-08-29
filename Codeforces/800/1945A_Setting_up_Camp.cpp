@@ -12,15 +12,16 @@ signed main() {
         int a, b, c;
         cin >> a >> b >> c;
         int ans = 0;
-        ans += a;
-        if(b % 3 == 0) {
-            ans += b / 3;
-            ans += (c + 2) / 3;
+        int need = (3 - b % 3) % 3;
+
+        if(need > c) {
+            cout << -1 << '\n';
+            continue;
         }
-        else {
-            if((b + c) % 3 == 0)    
-                ans += (b + c) / 3;
-        }
+
+        c -= need;
+        b += need;
+        ans = a + (b / 3) + (c + 2) / 3;
 
         cout << ans << '\n';
     }
