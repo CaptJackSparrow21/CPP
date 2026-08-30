@@ -1,0 +1,27 @@
+/*
+ * @lc app=leetcode id=2091 lang=cpp
+ *
+ * [2091] Removing Minimum and Maximum From Array
+ */
+
+// @lc code=start
+class Solution {
+public:
+    int minimumDeletions(vector<int>& nums) {
+        int n = nums.size();
+
+        int minIndex = min_element(nums.begin(), nums.end()) - nums.begin();
+        int maxIndex = max_element(nums.begin(), nums.end()) - nums.begin();
+
+        int left = min(minIndex, maxIndex);
+        int right = max(minIndex, maxIndex);
+
+        int front = right + 1;
+        int back = n - left;
+        int front_back = (left + 1) + (n - right);
+
+        return min({front, back, front_back});
+    }
+};
+// @lc code=end
+
