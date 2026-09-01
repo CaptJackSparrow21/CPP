@@ -2,13 +2,24 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long
+//#define int long long
 
 //TC = O(n * k) && SC = O(n)
 class Solution {
 public:
     int frogJump(vector<int> &heights, int k) {
+        int n = heights.size();
 
+        vector<int> dp(n, INT_MAX);
+        dp[0] = 0;
+
+        for(int i=1; i<n; i++) {
+            for(int j=max(0, i-k); j<i; j++) {
+                dp[i] = min(dp[i], 
+                            dp[j] + abs(heights[i] - heights[j]));
+            }
+        }
+        return dp[n-1];
     }
 };
 
