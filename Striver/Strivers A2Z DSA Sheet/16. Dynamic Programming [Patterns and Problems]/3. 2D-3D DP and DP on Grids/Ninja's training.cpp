@@ -4,10 +4,30 @@
 using namespace std;
 #define int long long
 
+//TC = O(n) && SC = O(1)
 class Solution {
 public:
     int ninjaTraining(vector<vector<int>> &matrix) {
-        
+        vector<int> prev(4);
+
+        prev[0] = max(matrix[0][1], matrix[0][2]);
+        prev[1] = max(matrix[0][0], matrix[0][2]);
+        prev[2] = max(matrix[0][0], matrix[0][1]);
+        prev[3] = max({matrix[0][0], matrix[0][1], matrix[0][2]});
+
+        for(int day = 1; day < matrix.size(); day++) {
+            vector<int> curr(4);
+
+            for(int last=0; last < 4; last++) {
+                for(int activity = 0; activity < 3; activity++) {
+                    if(activity != last)
+                        curr[last] = max(curr[last],
+                            matrix[day][activity] + prev[activity]);
+                }
+            }
+            prev = curr;
+        }
+        return prev[3];
     }
 };
 
