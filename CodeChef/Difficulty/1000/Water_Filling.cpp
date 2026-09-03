@@ -8,7 +8,16 @@ signed main() {
     cout.tie(0);
 
     int t; cin >> t;
-    while(t-- })
+    while(t--) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        int one = 0;
+        if(a == 1) one++;
+        if(b == 1) one++;
+        if(c == 1) one++;
+
+        cout << ((one <= 1) ? "Water filling time\n" : "Not now\n");
+    }
 
     return 0;
 }
