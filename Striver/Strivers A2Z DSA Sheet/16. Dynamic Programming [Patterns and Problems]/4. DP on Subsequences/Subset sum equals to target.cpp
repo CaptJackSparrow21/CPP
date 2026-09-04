@@ -4,7 +4,7 @@
 using namespace std;
 #define int long long
 
-//TC = SC = O(n * s); 
+//TC = SC = O(n * target); 
 class Solution {
 public:
     bool isSubsetSum(vector<int> arr, int target) {
