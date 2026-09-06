@@ -9,7 +9,8 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        
+        int n; cin >> n;
+        cout << 15 * n << '\n';
     }
 
     return 0;
