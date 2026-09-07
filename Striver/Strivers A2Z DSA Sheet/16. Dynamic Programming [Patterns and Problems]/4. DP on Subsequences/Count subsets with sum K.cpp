@@ -4,11 +4,19 @@
 using namespace std;
 #define int long long
 
-//
+//TC = O(n * k) && SC = O(k)
 class Solution {
 public:
     int perfectSum(vector<int> &arr, int K) {
-        
+        const int mod = 1e9 + 7;
+        vector<int> dp(K+1, 0);
+        dp[0] = 1;
+
+        for(int x : arr) {
+            for(int s=K; s>=x; s--)
+                dp[s] = (dp[s] + dp[s-x]) % mod;
+        }
+        return dp[K];
     }
 };
 
