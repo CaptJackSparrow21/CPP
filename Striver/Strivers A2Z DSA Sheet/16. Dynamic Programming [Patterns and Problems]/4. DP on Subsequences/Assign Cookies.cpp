@@ -4,11 +4,22 @@
 using namespace std;
 #define int long long
 
-//
+//TC = SC = O(n log n + m log m)
 class Solution {
 public:
     int findMaximumCookieStudents(vector<int> &Student, vector<int> &Cookie) {
+        sort(Student.begin(), Student.end());
+        sort(Cookie.begin(), Cookie.end());
 
+        int i=0, j=0, cnt=0;
+        while(i < Student.size() && j < Cookie.size()) {
+            if(Cookie[j] >= Student[i]) {
+                cnt++;
+                i++;
+            }
+            j++;
+        }
+        return cnt;
     }
 };
 
