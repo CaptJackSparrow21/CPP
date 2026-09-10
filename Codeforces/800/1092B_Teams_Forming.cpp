@@ -12,7 +12,10 @@ signed main() {
     for(int &i : a) cin >> i;
     sort(a.begin(), a.end());
     int ans = 0;
-    for(int i=0; i<n; i+=2) {}
+    for(int i=0; i<n; i+=2) 
+        ans += a[i+1] - a[i];
+
+    cout << ans;
 
     return 0;
 }
