@@ -4,11 +4,19 @@
 using namespace std;
 #define int long long
 
-//
+//TC = O(n * amount) && SC = O(amount)
 class Solution {
 public:
     int count(vector<int> &coins, int N, int amount) {
+        const int mod = 1e9 + 7;
+        vector<int> dp(amount + 1, 0);
+        dp[0] = 1;
 
+        for(int i=0; i<N; i++) {
+            for(int sum=coins[i]; sum<=amount; sum++)
+                dp[sum] = (dp[sum] + dp[sum - coins[i]]) % mod;
+        }
+        return dp[amount];
     }
 };
 
@@ -24,8 +32,17 @@ signed main() {
     vector<int> coins;
     string temp;
     for(char c : s) {
-        if(c == '-')
+        if(c == '-' || isdigit(c)) 
+            temp += c;
+        else if((c == ',' || c == ']') && !temp.empty()) {
+            coins.push_back(stoll(temp));
+            temp = "";
+        }
     }
+
+    int N = coins.size();
+    Solution sol;
+    cout << sol.count(coins, N, amount);
 
     return 0;
 }
