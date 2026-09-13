@@ -8,7 +8,14 @@ using namespace std;
 class Solution {
 public:
     int rodCutting(vector<int> price, int n) {
-
+        vector<int> dp(n + 1, 0);
+        for(int length=1; length<=n; length++) {
+            for(int cut=1; cut<=length; cut++) {
+                int currentValue = price[cut - 1] + dp[length - cut];
+                dp[length] = max(dp[length], currentValue);
+            }
+        }
+        return dp[n];
     }
 };
 
