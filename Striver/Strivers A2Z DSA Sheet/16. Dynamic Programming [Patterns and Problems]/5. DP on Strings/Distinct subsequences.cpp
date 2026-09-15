@@ -1,14 +1,15 @@
-/*
- * @lc app=leetcode id=115 lang=cpp
- *
- * [115] Distinct Subsequences
- */
+//https://takeuforward.org/plus/dsa/problems/distinct-subsequences?source=strivers-a2z-dsa-track
 
-// @lc code=start
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+
+//TC = SC = O(n * m)
 class Solution {
 public:
-    int numDistinct(string s, string t) {
-        int n = s.size(), m = t.size();
+    int distinctSubsequences(string s, string t) {
+        int n = s.size();
+        int m = t.size();
         const int mod = 1e9 + 7;
         vector<vector<int>> dp(n+1, vector<int> (m+1, 0));
 
@@ -27,5 +28,16 @@ public:
         return dp[n][m];
     }
 };
-// @lc code=end
 
+signed main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    string s, t;
+    cin >> s >> t;
+    Solution sol;
+    cout << sol.distinctSubsequences(s, t);
+
+    return 0;
+}
