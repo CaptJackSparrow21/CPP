@@ -1,18 +1,16 @@
-//https://takeuforward.org/plus/dsa/problems/shortest-common-supersequence?source=strivers-a2z-dsa-track
+/*
+ * @lc app=leetcode id=1092 lang=cpp
+ *
+ * [1092] Shortest Common Supersequence 
+ */
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-
-//TC = SC = O(n * m)
+// @lc code=start
 class Solution {
 public:
     string shortestCommonSupersequence(string str1, string str2) {
-        int n = str1.size();
-        int m = str2.size();
-
-        vector<vector<int>> dp(n+1, vector<int> (m+1, 0));
-
+        int n = str1.size(), m = str2.size();
+        vector<vector<int>>dp(n+1, vector<int> (m+1, 0));
+        string ans = "";
         for(int i=1; i<=n; i++) {
             for(int j=1; j<=m; j++) {
                 if(str1[i-1] == str2[j-1])
@@ -21,12 +19,14 @@ public:
                     dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
             }
         }
+
         int i = n, j = m;
-        string ans = "";
+
         while(i > 0 && j > 0) {
             if(str1[i-1] == str2[j-1]) {
                 ans += str1[i-1];
-                i--; j--;
+                i--;
+                j--;
             }
             else if(dp[i-1][j] > dp[i][j-1]) {
                 ans += str1[i-1];
@@ -42,7 +42,7 @@ public:
             ans += str1[i-1];
             i--;
         }
-        
+
         while(j > 0) {
             ans += str2[j-1];
             j--;
@@ -52,16 +52,5 @@ public:
         return ans;
     }
 };
+// @lc code=end
 
-signed main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-    string str1, str2;
-    cin >> str1 >> str2;
-    Solution sol;
-    cout << sol.shortestCommonSupersequence(str1, str2);
-
-    return 0;
-}
