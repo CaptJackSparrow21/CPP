@@ -1,22 +1,22 @@
-//https://takeuforward.org/plus/dsa/problems/edit-distance?source=strivers-a2z-dsa-track
+/*
+ * @lc app=leetcode id=72 lang=cpp
+ *
+ * [72] Edit Distance
+ */
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-
-//TC = SC = O(n * m)
+// @lc code=start
 class Solution {
 public:
-    int editDistance(string start, string target) {
-        int n = start.size();
-        int m = target.size();
+    int minDistance(string word1, string word2) {
+        string start = word1, target = word2;
+        int n = start.size(), m = target.size();
 
         vector<vector<int>> dp(n+1, vector<int> (m+1, 0));
         for(int i=0; i<=n; i++)
             dp[i][0] = i;
         for(int j=0; j<=m; j++)
             dp[0][j] = j;
-        
+
         for(int i=1; i<=n; i++) {
             for(int j=1; j<=m; j++) {
                 if(start[i-1] == target[j-1])
@@ -31,16 +31,5 @@ public:
         return dp[n][m];
     }
 };
+// @lc code=end
 
-signed main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-    string start, target;
-    cin >> start >> target;
-    Solution sol;
-    cout << sol.editDistance(start, target);
-
-    return 0;
-}
