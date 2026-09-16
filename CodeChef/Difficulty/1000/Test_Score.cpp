@@ -11,7 +11,10 @@ signed main() {
     while(t--) {
         int n, x, y;
         cin >> n >> x >> y;
-        
+        if(y == 0 || ((y % x == 0) && (y / x <= n)))
+            cout << "YES\n";
+        else 
+            cout << "NO\n";
     }
 
     return 0;
