@@ -11,7 +11,8 @@ signed main() {
     while(n--) {
         int x, y;
         cin >> x >> y;
-        
+
+        cout << ((y >= -1) ? "YES\n" : "NO\n");
     }
 
     return 0;
