@@ -10,12 +10,13 @@ signed main() {
     int t; cin >> t;
     while(t--) {
         int s; cin >> s;
-        if(s == 1)
-            cout << "1\n";
-        else if(s % 7 == 0) 
-            cout << s / 7 << '\n';
-        else if(s % 8 == 0)
-            cout << s / 8 << '\n';
+        int x = 1, sum = 0, c = 0;
+        while(sum < s) {
+            sum += x;
+            x += 2;
+            c++;
+        } 
+        cout << c << '\n';
     }
 
     return 0;
