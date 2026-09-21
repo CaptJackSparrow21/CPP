@@ -9,13 +9,9 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        string s; cin >> s;
-        int ans = 0;
-        set<char> v;
-        for(int i=0; i<s.size(); i++) {
-            v.insert(s[i]);
-            if()
-        }
+        int x, y;
+        cin >> x >> y;
+        cout << abs(x - y) << '\n';
     }
 
     return 0;
