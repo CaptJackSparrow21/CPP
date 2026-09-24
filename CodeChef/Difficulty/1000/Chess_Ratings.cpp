@@ -11,7 +11,8 @@ signed main() {
     while(t--) {
         int x, y;
         cin >> x >> y;
-        int diff = 
+        int diff = y - x;
+        cout << (diff + 7) / 8 << '\n';
     }
 
     return 0;
