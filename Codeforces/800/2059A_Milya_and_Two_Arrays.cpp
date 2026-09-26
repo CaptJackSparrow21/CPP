@@ -20,8 +20,12 @@ signed main() {
         for(int i : b)
             stb.insert(i);
 
-        if(sta.size() == 1 || stb.size() == 1)
+        if(sta.size() == 1 && stb.size() < 3)
             cout << "NO\n";
+        else if(sta.size() < 3 && stb.size() == 1)
+            cout << "NO\n";
+        else 
+            cout << "YES\n";
 
     }
 
