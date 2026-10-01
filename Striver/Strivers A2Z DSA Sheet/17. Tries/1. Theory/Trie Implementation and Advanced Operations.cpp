@@ -4,14 +4,14 @@
 using namespace std;
 #define int long long
 
-//
+//TC = O(L) && SC = O(C)
 class Trie {
     struct Node {
         Node *child[26] {};
         bool isEnd = false;
-        int cntEndwith = 0;
-        int cntPrefix = 0;
-    }
+        int cntEndWith = 0; //# exact words
+        int cntPrefix = 0;  //#having this prefix
+    };
 
     Node *root;
 
@@ -68,7 +68,7 @@ public :
             curr = curr->child[i];
             curr->cntPrefix--;
         }
-        
+        curr->cntEndWith--;
     }
 };
 
@@ -76,7 +76,7 @@ vector<string> parse(string s) {
     s.erase(remove(s.begin(), s.end(), '['), s.end());
     s.erase(remove(s.begin(), s.end(), ']'), s.end());
 
-    vector<sting> ans;
+    vector<string> ans;
     string temp;
     stringstream ss(s);
     while(getline(ss, temp, ','))
@@ -100,19 +100,20 @@ signed main() {
     Trie trie;
     cout << '[';
 
-    for(int i=1; i<op.size(); i++) {
+    int j = 0;
+    for(int i=0; i<op.size(); i++) {
         if(op[i] == "Trie")
             cout << "null";
         else if(op[i] == "insert") {
-            trie.insert(val[i]);
+            trie.insert(val[j++]);
             cout << "null";
         }
         else if(op[i] == "countWordsEqualTo")
-            cout << trie.countWordsEqualTo(val[i]);
+            cout << trie.countWordsEqualTo(val[j++]);
         else if(op[i] == "countWordsStartingWith")
-            cout << trie.countWordsStartingWith(val[i]);
+            cout << trie.countWordsStartingWith(val[j++]);
         else if(op[i] == "erase") {
-            trie.erase(val[i]);
+            trie.erase(val[j++]);
             cout << "null";
         }
 
