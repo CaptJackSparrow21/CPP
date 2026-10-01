@@ -13,8 +13,14 @@ signed main() {
         string s; cin >> s;
         bool ok = false;
         for(int i=0; i<5; i++) {
-            string x = s.substr(0, i) + s.substr(n - )
+            string x = s.substr(0, i) + s.substr(n - (4 - i));
+
+            if(x == "2020") {
+                ok = true;
+                break;
+            }
         }
+        cout << (ok ? "YES\n" : "NO\n");
     }
 
     return 0;
