@@ -4,8 +4,8 @@
 using namespace std;
 #define int long long
 
-// L -> length of word
-//TC = O(L) && 
+// L -> length of word, C -> # char
+//TC = O(L) && SC = O(C)
 class Trie {
     struct Node {
         Node *child[26]{};
