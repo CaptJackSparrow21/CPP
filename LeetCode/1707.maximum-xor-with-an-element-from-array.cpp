@@ -1,11 +1,10 @@
-//https://takeuforward.org/practice/dsa/maximum-xor-with-an-element-from-an-array
+/*
+ * @lc app=leetcode id=1707 lang=cpp
+ *
+ * [1707] Maximum XOR With an Element From Array
+ */
 
-#include<bits/stdc++.h>
-using namespace std;
-#define int long long
-
-//TC = O(n log n + q log q)
-//SC = O(n + q)
+// @lc code=start
 class Solution {
 public:
     struct Node {
@@ -38,13 +37,12 @@ public:
         return ans;
     }
 
-    vector<int> maximizeXor(vector<int> &nums, 
-                vector<vector<int>> &queries) {
+    vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& queries) {
         sort(nums.begin(), nums.end());
         vector<array<int, 3>> q;
         for(int i=0; i<queries.size(); i++)
             q.push_back({queries[i][1], queries[i][0], i});
-        
+
         sort(q.begin(), q.end());
         vector<int> ans(queries.size(), -1);
 
@@ -55,61 +53,11 @@ public:
                 insert(root, nums[j]);
                 j++;
             }
-
             if(j > 0)
                 ans[idx] = getmaxXor(root, x);
         }
         return ans;
     }
 };
+// @lc code=end
 
-
-signed main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-    string s, t;
-    getline(cin, s);
-    getline(cin, t);
-
-    vector<vector<int>> queries;
-    vector<int> nums, row;
-    string temp;
-    for(char c : s) {
-        if(isalnum(c))
-            temp += c;
-        else if((c == ',' || c == ']') && !temp.empty()) {
-            nums.push_back(stoll(temp));
-            temp = "";
-        }
-    }
-
-    temp = "";
-
-    for(char c : t) {
-        if(isalnum(c))
-            temp += c;
-        else if((c == ',' || c == ']') && !temp.empty()) {
-            row.push_back(stoll(temp));
-            temp = "";
-
-            if(c == ']') {
-                queries.push_back(row);
-                row.clear();
-            }
-        }
-    }
-
-    Solution sol;
-    vector<int> ans = sol.maximizeXor(nums, queries);
-    cout << '[';
-    for(int i=0; i<ans.size(); i++) {
-        cout << ans[i];
-        if(i + 1 < ans.size())
-            cout << ',';
-    }
-    cout << ']';
-
-    return 0;
-}
