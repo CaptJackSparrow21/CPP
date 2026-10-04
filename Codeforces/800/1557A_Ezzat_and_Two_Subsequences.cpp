@@ -12,8 +12,14 @@ signed main() {
         int n; cin >> n;
         int sum = 0, mx = LLONG_MIN;
         for(int i=0; i<n; i++) {
-            
+            int x; cin >> x;
+
+            sum += x;
+            mx = max(mx, x);
         }
+
+        double ans = mx + (double)(sum - mx) / (n - 1);
+        cout << fixed << setprecision(9) << ans << '\n';
 
     }
 
