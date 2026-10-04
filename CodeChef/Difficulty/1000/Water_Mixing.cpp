@@ -12,10 +12,14 @@ signed main() {
         int a, b, x, y;
         cin >> a >> b >> x >> y;
         int hot = 0, cold = 0;
-        if((a - b < 0) && abs(a - b) < x)
+        if((a - b < 0) && abs(a - b) <= x)
             cout << "YES\n"; 
-        else if((a - b > 0))
-            int cold = abs(a - b);
+        else if((a - b > 0) && (a - b) <= y)
+            cout << "YES\n";
+        else if(a == b)
+            cout << "YES\n";
+        else 
+            cout << "NO\n";
     }
 
     return 0;
