@@ -4,7 +4,7 @@
 using namespace std;
 #define int long long
 
-//
+//TC = O(n * m) && SC = O(k)
 class Solution {
 #define ll long long
 public:
@@ -18,8 +18,23 @@ public:
         ll pHash = 0, tHash = 0, power = 1;
 
         for(int i=0; i<m; i++) {
-            pHash = (pHash * base + )
+            pHash = (pHash * base + pat[i]) % mod;
+            tHash = (tHash * base + txt[i]) % mod;
+
+            if(i < m - 1)
+                power = power * base % mod;
         }
+
+        for(int i=0; i<=n-m; i++) {
+            if(pHash == tHash && txt.compare(i, m, pat) == 0)
+                ans.push_back(i);
+
+            if(i < n - m) {
+                tHash = (tHash - txt[i] * power % mod + mod) % mod;
+                tHash = (tHash * base + txt[i + m]) % mod;
+            }
+        }
+        return ans;
     }
 };
 
