@@ -11,7 +11,8 @@ signed main() {
     while(t--) {
         int x, n;
         cin >> x >> n;
-        
+        int need = (n - (100 * x) + 99) / 100;
+        cout << ((need <= 0) ? 0 : need) << '\n';
     }
 
     return 0;
