@@ -11,9 +11,10 @@ signed main() {
     while(t--) {
         int n; cin >> n;
         int ans = 0;
-        for(int i=0; i<3; i++) {
-            
-        }
+        vector<int> a(3);
+        for(int &i : a) cin >> i;
+        int mn = *min_element(a.begin(), a.end());
+        cout << n - mn << '\n';
     }
 
     return 0;
