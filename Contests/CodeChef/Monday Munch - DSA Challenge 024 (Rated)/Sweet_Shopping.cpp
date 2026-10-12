@@ -11,18 +11,18 @@ signed main() {
     while(t--) {
         int n, m;
         cin >> n >> m;
-        int cost = 0, ans = 0;
+        vector<int> a(n);
+        for(int &i : a) cin >> i;
+        int cost = 0, ans = 0, mx = 0;
+
+        int j = 1;
         for(int i=0; i<n; i++) {
-            int x; cin >> x;
-            if(cost + x <= m) {
-                cost += x;
-                ans++;
+            if(cost + a[i] <= m) {
+                
             }
-            else {
-                cost = 0;
-                ans = 0;
-            }
+
         }
+
         cout << ans << '\n';
     }
 
