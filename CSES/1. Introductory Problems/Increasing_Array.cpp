@@ -14,8 +14,10 @@ signed main() {
     for(int i=1; i<n; i++) {
         if(a[i] > a[i-1])
             continue;
-        else 
+        else {
             ans += a[i-1] - a[i];
+            a[i] = a[i-1];
+        }
     }
     cout << ans;
 
