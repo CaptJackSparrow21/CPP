@@ -4,7 +4,7 @@
 using namespace std;
 #define int long long
 
-//
+//TC = SC = O(n)
 class Solution {
 public:
     string lps(string s) {
@@ -33,7 +33,11 @@ signed main() {
 
     string s; cin >> s;
     Solution sol;
-    if(sol.)
+    string ans = sol.lps(s);
+    if(ans.empty())
+        cout << "\"\"";
+    else 
+        cout << ans;
 
     return 0;
 }
