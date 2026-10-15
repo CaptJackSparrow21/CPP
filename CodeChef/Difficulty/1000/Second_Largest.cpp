@@ -11,7 +11,7 @@ signed main() {
     while(t--) {
         int a, b ,c;
         cin >> a >> b >> c;
-        if(a <= b && b <= c)
+        cout << max(min(a, b), min(max(a, b), c)) << '\n';
     }
 
     return 0;
