@@ -38,7 +38,12 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
+<<<<<<< HEAD
     string s; cin >> s;
+=======
+    string s;
+    cin >> s;
+>>>>>>> 8a9168c (2026-10-19 15:00:08)
     Solution sol;
     cout << sol.shortestPalindrome(s);
 
