@@ -12,12 +12,20 @@ signed main() {
         int n, k; 
         cin >> n >> k;
         string s; cin >> s;
-        int fields = n / k, ans = 0;
-        for(int i=0; i<fields; i++) {
+        int ans = 0;
+        for(int i=0; i<n; i+=k) {
             string farm = s.substr(i, k);
-            for(auto c : farm)
+            int ch = 0;
+            for(auto c : farm) {
+                if(c == '1')
+                    ch++;
+            }
+            if(ch == k)
+                ans++;
         }
+        cout << ans << '\n';
     }
+
 
     return 0;
 }
