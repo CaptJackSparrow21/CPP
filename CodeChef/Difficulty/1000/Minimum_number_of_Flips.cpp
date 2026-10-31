@@ -9,7 +9,16 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        
+        int n; cin >> n;
+        vector<int> a(n);
+        for(int &i : a) cin >> i;
+        int sum = accumulate(a.begin(), a.end(), 0);
+        if(n % 2)
+            cout << -1 << '\n';
+        else if(sum == 0)
+            cout << 0 << '\n';
+        else 
+            cout << abs(sum) / 2 << '\n';
     }
 
     return 0;
