@@ -9,7 +9,16 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        
+        int n, a, b;
+        cin >> n >> a >> b;
+
+        int ans = 0;
+        while(n > 1) {
+            n >>= 1;
+            ans += a + b;
+        }
+
+        cout << ans - b << '\n';
     }
 
     return 0;

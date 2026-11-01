@@ -2,5 +2,7 @@
     "files.associations": {
         "just": "cpp"
     },
-    "editor.wordWrap": "off"
+    "editor.wordWrap": "off",
+    "cph.language.python.SubmissionCompiler": "PyPy 3.10 (7.3.15, 64bit)",
+    "cph.language.python.Command": "/Users/teknas/Documents/cpp/HackerRank/Python/.venv/bin/python"
 }
