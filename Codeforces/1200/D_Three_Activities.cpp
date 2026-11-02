@@ -2,7 +2,13 @@
 using namespace std;
 #define int long long
 
-void update(vector<pair<int, int>> &v)
+void update(vector<pair<int, int>> &v, int val, int idx) {
+    v.push_back({val, idx});
+    sort(v.rbegin(), v.rend());
+
+    if(v.size() > 3)
+        v.pop_back();
+}
 
 signed main() {
     ios_base::sync_with_stdio(0);
@@ -26,6 +32,20 @@ signed main() {
         }
 
         int ans = 0;
+
+        for(auto x : A) {
+            for(auto y : B) {
+                for(auto z : C) {
+                    if(x.second != y.second &&
+                       y.second != z.second &&
+                       x.second != z.second) {
+                            ans = max(ans, x.first + y.first + z.first);
+                    }
+                }
+            }
+        }
+
+        cout << ans << '\n';
     }
 
     return 0;
