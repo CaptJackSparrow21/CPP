@@ -3,7 +3,10 @@ using namespace std;
 #define int long long
 
 int solve(int x, int y) {
-    if(x == y)
+    if(y % x == 0)
+        return (y / x) - 1;
+    else 
+        return y / x;
 }
 
 signed main() {
