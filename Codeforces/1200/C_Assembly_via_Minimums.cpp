@@ -9,8 +9,11 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        string s; cin >> s;
-        
+        int n; cin >> n;
+        vector<int> b, a;
+        for(int i=0; i<)
+
+
     }
 
     return 0;
