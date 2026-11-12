@@ -22,16 +22,36 @@ signed main() {
 
     for(int i=2; i<=mx; i++) {
         if(spf[i] == 0) {
-            for(int j=i; j<=mx; j+=i) [
+            for(int j=i; j<=mx; j+=i) {
                 if(spf[j] == 0)
                     spf[j] = i;
-            ]
+            }
         }
     }
 
-    vector<bool> seen(mx + 1 )
+    vector<bool> seen(mx + 1, false);
+    bool pairwise = true;
 
-    
+    for(int x : a) {
+        while(x > 1) {
+            int p = spf[x];
+
+            if(seen[p])
+                pairwise = false;
+
+            seen[p] = true;
+
+            while(x % p == 0)
+                x /= p;
+        }
+    }
+
+    if(g > 1)
+        cout << "not coprime\n";
+    else if(pairwise)
+        cout << "pairwise coprime\n";
+    else 
+        cout << "setwise coprime\n";
 
     return 0;
 }
