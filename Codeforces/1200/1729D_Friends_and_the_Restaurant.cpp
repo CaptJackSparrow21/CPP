@@ -10,26 +10,27 @@ signed main() {
     int t; cin >> t;
     while(t--) {
         int n; cin >> n;
-        vector<int> d(n);
-        for(int &x : d) cin >> x;
-        for(int &x : d) {
-            int y; cin >> y;
-            x = y - x;
-        }
+        vector<int> x(n), y(n), diff(n);
+        for(int &i : x) cin >> i;
+        for(int &i : y) cin >> i;
 
-        sort(d.begin(), d.end());
-        int i = 0, j = n-1, ans = 0;
+        for(int i=0; i<n; i++)
+            diff[i] = y[i] - x[i];
 
-        while(i < j) {
-            if(d[i] + d[j] >= 0) {
-                ans++;
-                i++;
-                j--;
+        sort(diff.begin(), diff.end());
+
+        int l = 0, r = n - 1, cnt = 0;
+
+        while(l < r) {
+            if(diff[l] + diff[r] >= 0) {
+                cnt++;
+                l++;
+                r--;
             }
             else 
-                i++;
+                l++;
         }
-        cout << ans << '\n';
+        cout << cnt << '\n';
     }
 
     return 0;
