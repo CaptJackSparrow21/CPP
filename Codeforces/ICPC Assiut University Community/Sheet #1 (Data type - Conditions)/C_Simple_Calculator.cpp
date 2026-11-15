@@ -7,7 +7,12 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    
+    int x, y;
+    cin >> x >> y;
+
+    cout << x << " + " << y << " = " << x + y << '\n';
+    cout << x << " * " << y << " = " << x * y << '\n';
+    cout << x << " - " << y << " = " << x - y;
 
     return 0;
 }
