@@ -10,26 +10,17 @@ signed main() {
     int t; cin >> t;
     while(t--) {
         string s1, s2;
-        
         cin >> s1 >> s2;
-        int n = s1.size();
-
         int mx = 0, mn = 0;
 
         for(int i=0; i<s1.size(); i++) {
-            if(s1[i] == s2[i]) {
-                if(s1[i] == '?')
-                    mx++;
-            }
-            else if(s1[i] != s2[i]) {
-                if(s1[i] != '?' && s2[i] != '?')
-                    mn++;
-            }
-            else {
-                mx++;
+            if(s1[i] != s2[i] && s1[i] != '?' && s2[i] != '?')
                 mn++;
-            }
+            
+            if(s1[i] != s2[i] || s1[i] == '?' || s2[i] == '?')
+                mx++;
         }
+        
         cout << mn << ' ' << mx << '\n';
     }
 
