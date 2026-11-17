@@ -11,16 +11,9 @@ signed main() {
     while(t--) {
         int n; cin >> n;
         vector<int> a(n);
-        int sum = 0;
-        for(int &i : a) {
-            cin >> i;
-            sum += i;
-        }
+        for(int &i : a) cin >> i;
 
-        sort(a.rbegin(), a.rend());
-
-        int combo = sum / 2;
-        int killed = 0, 
+        cout << n - count(a.begin(), a.end(), *min_element(a.begin(), a.end())) << '\n';
     }
 
     return 0;
