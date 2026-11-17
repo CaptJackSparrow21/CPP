@@ -12,7 +12,8 @@ signed main() {
         int n; cin >> n;
         vector<int> a(n);
         for(int &i : a) cin >> i;
-        
+        sort(a.begin(), a.end());
+        cout << a[n/2] << '\n';
     }
 
     return 0;
