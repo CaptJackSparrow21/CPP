@@ -21,6 +21,11 @@ signed main() {
                 cnt = (n + 1) / 2;
         }
 
+        if(cnt == 0)
+            cnt = n / 2;
+
+        cout << mx + cnt << '\n';
+
     }
 
     return 0;
