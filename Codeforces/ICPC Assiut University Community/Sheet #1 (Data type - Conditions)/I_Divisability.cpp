@@ -10,17 +10,19 @@ signed main() {
     int a, b, x;
     cin >> a >> b >> x;
 
-    int ans = 0;
-    for(int i=a; i<=b; ) {
-        if(i % x == 0) {
-            ans += i;
-            i += x;
-        }
-        else    
-            i++;
+    if(a > b)
+        swap(a, b);
+
+    int first = ((a + x - 1) / x) * x;
+    int last = (b / x) * x;
+
+    if(first > last) {
+        cout << 0;
+        return 0;
     }
 
-    cout << ans;
+    int n = ((last - first) / x) + 1;
+    cout << n * (last + first) / 2; 
 
     return 0;
 }
