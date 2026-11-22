@@ -7,13 +7,8 @@ signed main() {
     cin.tie(0);
     cout.tie(0);
 
-    int t; cin >> t;
-    while(t--) {
-        int n; char c;
-        cin >> n >> c;
-        string s; cin >> s;
-        
-    }
+    string x; cin >> x;
+    cout << (x[0] % 2 ? "ODD" : "EVEN");
 
     return 0;
 }
