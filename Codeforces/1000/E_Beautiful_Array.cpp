@@ -9,9 +9,10 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int n, a, b;
-        cin >> n >> a >> b;
-
+        int n, k;
+        cin >> n >> k;
+        vector<int> a(n);
+        for(&i : a) cin >> i;
         
     }
 
