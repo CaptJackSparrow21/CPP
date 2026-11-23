@@ -10,9 +10,19 @@ signed main() {
     int t; cin >> t;
     while(t--) {
         int n; cin >> n;
-        vector<int> p(n);
-        for(int &i : p) cin >> i;
-        
+        int pos1, posN;
+        for(int i=1; i<=n; i++) {
+            int x; cin >> x;
+            if(x == 1) pos1 = i;
+            if(x == n) posN = i;
+        }
+
+        int ans = (pos1 - 1) + (n - posN);
+
+        if(pos1 > posN)
+            ans--;
+
+        cout << ans << '\n';
     }
 
     return 0;
