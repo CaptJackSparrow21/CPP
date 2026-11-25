@@ -9,14 +9,7 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int n; cin >> n;
-        vector<int> a(n);
-        for(int &i : a) cin >> i;
-        int ans = 0;
-        for(int i : a)
-            ans ^= i;
-
-        cout << (ans == 0 ? "YES\n" : "NO\n");
+        
     }
 
     return 0;
