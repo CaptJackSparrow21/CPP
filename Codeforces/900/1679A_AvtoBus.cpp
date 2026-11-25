@@ -11,15 +11,15 @@ signed main() {
     while(t--) {
         int n; cin >> n;
 
-        if(n % 4 != 0) {
+        if(n % 2 != 0 || n < 4) {
             cout << -1 << '\n';
             continue;
         }
 
-        if(n % 12 == 0) 
-            cout << n / 6 << ' ' << n / 4 << '\n';
-        else 
-            cout << n / 4 << ' ' << n / 4 << '\n';
+        int mn = (n + 5) / 6;
+        int mx = n / 4;
+
+        cout << mn << ' ' << mx << '\n';
     }
 
     return 0;
