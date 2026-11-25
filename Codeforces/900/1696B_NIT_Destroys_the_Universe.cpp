@@ -37,7 +37,7 @@ signed main() {
             }
         }
 
-        cout << (zero ? 2 : 1)
+        cout << (zero ? 2 : 1) << '\n';
     }
 
     return 0;
