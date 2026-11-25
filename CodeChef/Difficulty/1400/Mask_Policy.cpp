@@ -9,8 +9,9 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int n; cin >> n;
-        
+        int n, a;
+        cin >> n >> a;
+        cout << min(a, n - a) << '\n';
     }
 
     return 0;
