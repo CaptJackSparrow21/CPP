@@ -3,6 +3,18 @@ using namespace std;
 #define int long long
 const int mod = 1e9 + 7;
 
+int binpow(int a, int b) {
+    if(b == 0)
+        return 1;
+
+    if(b % 2 == 1)
+        return a * binpow(a, b - 1) % mod;
+    else {
+        int temp = binpow(a, b / 2) % mod;
+        return temp * temp % mod;
+    }
+}
+
 signed main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
@@ -12,8 +24,7 @@ signed main() {
     while(t--) {
         int n, k;
         cin >> n >> k;
-        
-
+        cout << binpow(n, k) << '\n';
     }
 
     return 0;
