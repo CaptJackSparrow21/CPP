@@ -11,7 +11,24 @@ signed main() {
     char s, q;
     cin >> a >> s >> b >> q >> c;
 
-    if(s == )
+    if(s == '+') {
+        if(c == a + b)
+            cout << "Yes";
+        else 
+            cout << a + b;
+    }
+    else if(s == '-') {
+        if(c == a - b)
+            cout << "Yes";
+        else 
+            cout << a - b;
+    }
+    else if(s == '*') {
+        if(c == a * b)
+            cout << "Yes";
+        else 
+            cout << a * b;
+    }
 
     return 0;
 }
