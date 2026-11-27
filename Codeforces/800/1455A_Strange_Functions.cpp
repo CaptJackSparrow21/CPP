@@ -9,8 +9,8 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        int n; cin >> n;
-        
+        string n; cin >> n;
+        cout << n.size() << '\n';
     }
 
     return 0;
