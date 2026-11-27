@@ -9,8 +9,7 @@ signed main() {
 
     int t; cin >> t;
     while(t--) {
-        string s, t;
-        cin >> s >> t;
+        int n; cin >> n;
         
     }
 
