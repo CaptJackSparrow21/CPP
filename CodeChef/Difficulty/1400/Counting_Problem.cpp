@@ -17,7 +17,7 @@ signed main() {
             if(x % 2) odd++;
         }
 
-        if(odd % 2 == 0)
+        if(odd > 0 && odd % 2 == 0)
             cout << "YES\n";
         else 
             cout << "NO\n";
